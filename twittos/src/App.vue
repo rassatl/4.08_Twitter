@@ -176,7 +176,6 @@ const route = useRoute();
 </template>
 
 <style scoped>
-/* search form */
 #wrap {
   display: flex;
   justify-content: right;
@@ -243,11 +242,6 @@ const route = useRoute();
 #buttonTwitter:hover {
   background: #1684c9;
   cursor: pointer;
-}
-
-header {
-  line-height: 1.5;
-  max-height: 100vh;
 }
 
 nav {

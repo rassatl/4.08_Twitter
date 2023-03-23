@@ -24,7 +24,7 @@ import TweetComponent from './TweetComponent.vue'
         </div>
         <textarea id="textAreaTweet" name="story" rows="5" cols="33" placeholder="What's happening?"></textarea>
       </div>
-      <div id="containerInconTweetButton">
+      <div id="containerIconTweetButton">
         <div id="containerIcons">
           <div id="bgIcons">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
@@ -245,7 +245,7 @@ import TweetComponent from './TweetComponent.vue'
   background-color: gray;
   cursor: pointer;
 }
-#containerInconTweetButton{
+#containerIconTweetButton{
   display: flex;
   justify-content: space-between;
 }
