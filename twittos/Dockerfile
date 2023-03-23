@@ -11,6 +11,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx","-g", "daemon off;" ]
 
-# docker build -t twittos .
 # docker ps /   docker ps -a  / docker images
+
+# docker build -t twittos .
 # docker run -p 8000:80 -it --name twittos twittos
