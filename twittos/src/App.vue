@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView, useRoute } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import TrendComponent from './components/TrendComponent.vue'
+import WhoToFollowComponent from './components/WhoToFollowComponent.vue'
 const route = useRoute();
 </script>
 
@@ -8,9 +9,20 @@ const route = useRoute();
   <div id="wrap">
     <form id="nav-search" class="form-search" action="/search" role="search">
       <input id="search-query" class="search-input" type="text" placeholder="Search Twitter" />
-      <button class="icon" type="submit"></button>
     </form>
   </div>
+
+  <div id="trends">
+    <h3>Trends for you</h3>
+    <TrendComponent/>
+    <a href="/explore"><div id="buttonTwitter">Show More</div></a>
+  </div>
+  <div id="follows">
+    <h3>Who to follow</h3>
+    <WhoToFollowComponent/>
+    <a href="/explore"><div id="buttonTwitter">Show More</div></a>
+  </div>
+
   <header>
     <nav>
       <ul>
@@ -176,14 +188,69 @@ const route = useRoute();
 </template>
 
 <style scoped>
+#follows{
+  background-color: #eaecec;
+  color: Black;
+  width: 20rem;
+  padding: 10px;
+  border-radius: 13px;
+  position: fixed;
+  right: 10rem;
+  top: 25rem;
+  z-index: 999;
+}
+#follows h3{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#follows #buttonTwitter{
+  background-color: transparent;
+  color: #1DA1F2;
+  margin-top: 5px;
+  text-align: center;
+}
+#follows #buttonTwitter:hover{
+  background-color: rgb(201, 201, 201);
+}
+
+#trends{
+  background-color: #eaecec;
+  color: Black;
+  width: 20rem;
+  padding: 10px;
+  border-radius: 13px;
+  position: fixed;
+  right: 10rem;
+  z-index: 999;
+}
+#trends h3{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#trends #buttonTwitter{
+  background-color: transparent;
+  color: #1DA1F2;
+  margin-top: 5px;
+  text-align: center;
+}
+#trends #buttonTwitter:hover{
+  background-color: rgb(201, 201, 201);
+}
 #wrap {
+  margin-top: 1rem;
   display: flex;
-  justify-content: right;
 }
 
 #nav-search {
-  position: relative;
-  width: 202px;
+  margin-top: 1rem;
+  color: Black;
+  right: 19.5rem;
+  border-radius: 13px;
+  position: fixed;
+  top: 10px;
+  z-index: 999;
 }
 
 #nav-search input {

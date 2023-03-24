@@ -29,6 +29,58 @@ import ItemTweet from './TweetItem.vue'
             </template>
         </ItemTweet>
     </div>
+
+    <div class="theTweet">
+        <ItemTweet>
+            <template #avatar>
+                <img src="../assets/avatar.jpg" alt="Avatar" class="imgAvatar" />
+            </template>
+            <template #name>
+                <h6>Thoomas <g>@Thoomas · 3min</g>
+                </h6>
+            </template>
+            <template #contentText>Fornite 2023.....
+                <br>
+                <div id="hashtag">
+                    <p>#fortnite</p>
+                    <p>#games</p>
+                    <p>#oldtime</p>
+                </div>
+            </template>
+            <template #contentObj>
+                <!-- <video id="vod" width="380" height="214" controls>
+                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
+                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
+                </video> -->
+            </template>
+        </ItemTweet>
+    </div>
+
+    <div class="theTweet">
+        <ItemTweet>
+            <template #avatar>
+                <img src="../assets/avatar.jpg" alt="Avatar" class="imgAvatar" />
+            </template>
+            <template #name>
+                <h6>Thoomas <g>@Thoomas · 3min</g>
+                </h6>
+            </template>
+            <template #contentText>Fornite 2023.....
+                <br>
+                <div id="hashtag">
+                    <p>#fortnite</p>
+                    <p>#games</p>
+                    <p>#oldtime</p>
+                </div>
+            </template>
+            <template #contentObj>
+                <!-- <video id="vod" width="380" height="214" controls>
+                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
+                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
+                </video> -->
+            </template>
+        </ItemTweet>
+    </div>
 </template>
 
 <style scoped>

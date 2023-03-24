@@ -17,21 +17,22 @@
             <slot name="contentObj"></slot>
         </div>
         <div class="optionTweet">
-            <div>
+
+            <div class="tweetOptions">
                 <div class="optionsIconsBasic">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                         <g>
                             <path
-                                d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z">
+                                d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z" style: fill="#000000">
                             </path>
                         </g>
                     </svg>
                 </div>
-                <div class="nbParOption">
+                <div class="nbParOptionBasic">
                     <p>6</p>
                 </div>
             </div>
-            <div>
+            <div class="tweetOptions">
                 <div class="optionsIconsRetweeter">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                         <g>
@@ -41,12 +42,12 @@
                         </g>
                     </svg>
                 </div>
-                <div class="nbParOption">
+                <div class="nbParOptionRetweeter">
                     <p>47</p>
                 </div>
             </div>
 
-            <div>
+            <div class="tweetOptions">
                 <div class="optionsIconsLike">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                         <g>
@@ -56,11 +57,11 @@
                         </g>
                     </svg>
                 </div>
-                <div class="nbParOption">
+                <div class="nbParOptionLike">
                     <p>117</p>
                 </div>
             </div>
-            <div>
+            <div class="tweetOptions">
                 <div class="optionsIconsBasic">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                         <g>
@@ -68,24 +69,29 @@
                         </g>
                     </svg>
                 </div>
-                <div class="nbParOption">
+                <div class="nbParOptionBasic">
                     <p>1 147</p>
                 </div>
             </div>
             
-            <div class="optionsIconsBasic">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <div class="tweetOptions">
+                <div class="optionsIconsBasic">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                     <g>
                         <path
                             d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z">
                         </path>
                     </g>
                 </svg>
+                </div>
+                <div class="heart"></div>
             </div>
         </div>
     </div>
 </template>
-  
+
+
+
 <style scoped>
 .item{
     padding-bottom: 0.3rem;
@@ -105,10 +111,11 @@
     display: flex;
 }
 
-.nbParOption p {
-    margin-left: 5px;
-    margin-top: 5px;
-    color:rgb(83, 100, 113)
+.tweetOptions p {
+    margin-left: 15px;
+    margin-top: 3px;
+    color:rgb(83, 100, 113);
+    font-size: 15px;
 }
 
 .optionsIconsBasic,
@@ -120,16 +127,38 @@
     padding-top: 4px;
     padding-left: 4px;
     cursor: pointer;
+    transition: all 100ms ease-in-out;
 }
-.optionsIconsBasic:hover{
+.tweetOptions:hover .optionsIconsBasic{
     background-color: rgb(29, 155, 240, 0.5);
 }
-.optionsIconsRetweeter:hover{
-    background-color: rgb(0, 186, 124,0.5);
+.tweetOptions:hover .optionsIconsBasic svg g path{
+    fill: #0A78FF;
 }
-.optionsIconsLike:hover{
-    background-color: rgb(249, 24, 128,0.5);
+.tweetOptions:hover .nbParOptionBasic p{
+    color:#0A78FF
 }
+
+.tweetOptions:hover .optionsIconsRetweeter{
+    background-color: rgb(0, 186, 124, 0.5);
+}
+.tweetOptions:hover .optionsIconsRetweeter svg g path{
+    fill: #009254
+}
+.tweetOptions:hover .nbParOptionRetweeter p{
+    color:#009254
+}
+
+.tweetOptions:hover .optionsIconsLike{
+    background-color: rgb(249, 24, 128, 0.5);
+}
+.tweetOptions:hover .optionsIconsLike svg g path{
+    fill: #942e27
+}
+.tweetOptions:hover .nbParOptionLike p{
+    color:#942e27
+}
+
 
 i {
     margin-top: 1rem;
