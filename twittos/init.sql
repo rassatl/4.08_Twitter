@@ -15,4 +15,4 @@ INSERT INTO tweet (arobase, pseudo, message) VALUES ('@Crateros', 'Crateros', 'J
 
 -- cp init.sql ./db-lib/ --> Copie le fichier sql
 -- docker-compose exec mariadb mysql -u mon_user -pmon_mot_de_passe ma_base_de_donnees --> Ca vas connecter a la base 
--- écrire source /var/lib/mysql/data.sql
+-- écrire source /var/lib/mysql/init.sql
