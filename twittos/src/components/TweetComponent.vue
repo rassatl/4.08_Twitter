@@ -22,10 +22,10 @@ import ItemTweet from './TweetItem.vue'
                 </div>
             </template>
             <template #contentObj>
-                <video id="vod" width="380" height="214" controls>
-                    <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
-                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4>
-                </video>
+                <!-- <video id="vod" width="380" height="214" controls>
+                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
+                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
+                </video> -->
             </template>
         </ItemTweet>
     </div>
