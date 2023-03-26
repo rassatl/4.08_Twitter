@@ -23,6 +23,12 @@ const route = useRoute();
     <a href="/explore"><div id="buttonTwitter">Show More</div></a>
   </div>
 
+  <div id="terms">
+    <p>
+      Terms of Service Privacy Policy Cookie Policy Accessibility Ads info More © 2023 Twitter, Inc.
+    </p>
+  </div>
+
   <header>
     <nav>
       <ul>
@@ -188,10 +194,22 @@ const route = useRoute();
 </template>
 
 <style scoped>
+#terms{
+  background-color: none;
+  color: Black;
+  width: 25rem;
+  padding: 10px;
+  border-radius: 13px;
+  position: fixed;
+  right: 10rem;
+  top: 46rem;
+  z-index: 999;
+}
+
 #follows{
   background-color: #eaecec;
   color: Black;
-  width: 20rem;
+  width: 25rem;
   padding: 10px;
   border-radius: 13px;
   position: fixed;
@@ -217,7 +235,7 @@ const route = useRoute();
 #trends{
   background-color: #eaecec;
   color: Black;
-  width: 20rem;
+  width: 25rem;
   padding: 10px;
   border-radius: 13px;
   position: fixed;
