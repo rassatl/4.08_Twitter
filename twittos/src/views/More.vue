@@ -1,7 +1,10 @@
 <script>
-export default {};
+export default {
+  mounted() {
+    document.title = 'More / Twitter';
+  },
+};
 </script>
-
 <template>
   <div class="more">
     <h1>This is an more page</h1>

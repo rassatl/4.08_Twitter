@@ -5,9 +5,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    document.title = 'Notifications / Twitter';
+  },
+};
 </script>
-
 
 <style>
 @media (min-width: 1024px) {

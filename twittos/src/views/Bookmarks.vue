@@ -1,5 +1,9 @@
 <script>
-export default {};
+export default {
+  mounted() {
+    document.title = 'Bookmars / Twitter';
+  },
+};
 </script>
 <template>
   <div class="bookmarks">

@@ -1,3 +1,11 @@
+<script>
+export default {
+  mounted() {
+    document.title = 'About / Twitter';
+  },
+};
+</script>
+
 <template>
   <div class="about">
     <h1>This is an about page</h1>

@@ -1,5 +1,9 @@
 <script>
-export default {};
+export default {
+  mounted() {
+    document.title = 'Explore / Twitter';
+  },
+};
 </script>
 
 <template>

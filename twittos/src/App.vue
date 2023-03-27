@@ -197,11 +197,11 @@ const route = useRoute();
 #terms{
   background-color: none;
   color: Black;
-  width: 25rem;
+  width: 20rem;
   padding: 10px;
   border-radius: 13px;
   position: fixed;
-  right: 10rem;
+  right: 8rem;
   top: 46rem;
   z-index: 999;
 }
@@ -209,11 +209,11 @@ const route = useRoute();
 #follows{
   background-color: #eaecec;
   color: Black;
-  width: 25rem;
+  width: 20rem;
   padding: 10px;
   border-radius: 13px;
   position: fixed;
-  right: 10rem;
+  right: 8rem;
   top: 25rem;
   z-index: 999;
 }
@@ -235,11 +235,11 @@ const route = useRoute();
 #trends{
   background-color: #eaecec;
   color: Black;
-  width: 25rem;
+  width: 20rem;
   padding: 10px;
   border-radius: 13px;
   position: fixed;
-  right: 10rem;
+  right: 8rem;
   z-index: 999;
 }
 #trends h3{
