@@ -2,6 +2,9 @@
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import TrendComponent from './components/TrendComponent.vue'
 import WhoToFollowComponent from './components/WhoToFollowComponent.vue'
+import FriendMessageComponent from './components/FriendMessageComponent.vue'
+import SearchBar from './components/SearchBar.vue'
+
 import { ref } from 'vue'
 const route = useRoute();
 function OpenMessageBox() {
@@ -18,11 +21,7 @@ const boolBoxMessage = ref(false);
 </script>
 
 <template>
-  <div id="wrap">
-    <form id="nav-search" class="form-search" action="/search" role="search">
-      <input id="search-query" class="search-input" type="text" placeholder="Search Twitter" />
-    </form>
-  </div>
+  <SearchBar />
 
   <div id="trends">
     <h3>Trends for you</h3>
@@ -49,12 +48,14 @@ const boolBoxMessage = ref(false);
     <nav>
       <ul>
         <li>
-          <a id="bgIconTwitter" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-            <svg viewBox="328 355 335 276" class="iconTwitter" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M 630, 425 A 195, 195 0 0 1 331, 600 A 142, 142 0 0 0 428, 570 A  70,  70 0 0 1 370, 523 A  70,  70 0 0 0 401, 521 A  70,  70 0 0 1 344, 455 A  70,  70 0 0 0 372, 460 A  70,  70 0 0 1 354, 370 A 195, 195 0 0 0 495, 442 A  67,  67 0 0 1 611, 380 A 117, 117 0 0 0 654, 363 A  65,  65 0 0 1 623, 401 A 117, 117 0 0 0 662, 390 A  65,  65 0 0 1 630, 425 Z"
-                style="fill:#3BA9EE;" />
-            </svg>
+          <a id="ademerde" href="https://youtu.be/dQw4w9WgXcQ">
+            <div class="twitter">
+              <svg viewBox="328 355 335 276" class="iconTwitter" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M 630, 425 A 195, 195 0 0 1 331, 600 A 142, 142 0 0 0 428, 570 A  70,  70 0 0 1 370, 523 A  70,  70 0 0 0 401, 521 A  70,  70 0 0 1 344, 455 A  70,  70 0 0 0 372, 460 A  70,  70 0 0 1 354, 370 A 195, 195 0 0 0 495, 442 A  67,  67 0 0 1 611, 380 A 117, 117 0 0 0 654, 363 A  65,  65 0 0 1 623, 401 A 117, 117 0 0 0 662, 390 A  65,  65 0 0 1 630, 425 Z"
+                  style="fill:#3BA9EE;" />
+              </svg>
+            </div>
           </a>
         </li>
         <li>
@@ -249,13 +250,32 @@ const boolBoxMessage = ref(false);
         </div>
       </div>
     </div>
+    <FriendMessageComponent />
   </div>
 </template>
 
 <style scoped>
-*{
+.twitter {
+  display: inline-block;
+  border-radius: 100%;
+  padding: 10px;
+  height: 4.1rem;
+  left: -1.3rem;
+}
+
+.twitter:hover {
+  background-color: rgb(29, 155, 240, 0.2);
+  cursor: pointer;
+}
+
+* {
   transition: all 255ms ease-in-out;
 }
+
+#ademerde {
+  background-color: transparent;
+}
+
 #boiteMessage {
   width: 25%;
   height: 25rem;
@@ -263,7 +283,7 @@ const boolBoxMessage = ref(false);
   border-radius: 25px;
   bottom: -22rem;
   right: 5rem;
-  z-index: 999;
+  z-index: 600;
   position: fixed;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
@@ -349,9 +369,9 @@ const boolBoxMessage = ref(false);
   padding: 10px;
   border-radius: 13px;
   position: fixed;
-  right: 8rem;
-  top: 46rem;
-  z-index: 999;
+  right: 15rem;
+  top: 48rem;
+  z-index: 600;
 }
 
 #follows {
@@ -361,9 +381,9 @@ const boolBoxMessage = ref(false);
   padding: 10px;
   border-radius: 13px;
   position: fixed;
-  right: 8rem;
-  top: 25rem;
-  z-index: 999;
+  right: 15rem;
+  top: 27rem;
+  z-index: 600;
 }
 
 #follows h3 {
@@ -389,8 +409,9 @@ const boolBoxMessage = ref(false);
   padding: 10px;
   border-radius: 13px;
   position: fixed;
-  right: 8rem;
-  z-index: 999;
+  top: 5rem;
+  right: 15rem;
+  z-index: 600;
 }
 
 #trends h3 {
@@ -409,50 +430,7 @@ const boolBoxMessage = ref(false);
   background-color: rgb(201, 201, 201);
 }
 
-#wrap {
-  margin-top: 1rem;
-  display: flex;
-}
 
-#nav-search {
-  margin-top: 1rem;
-  color: Black;
-  right: 19.5rem;
-  border-radius: 13px;
-  position: fixed;
-  top: 10px;
-  z-index: 999;
-}
-
-#nav-search input {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
-  display: block;
-  width: 163px;
-  height: 14px;
-  padding: 6px 27px 6px 12px;
-  cursor: pointer;
-  color: rgb(102, 102, 102);
-  background-color: rgb(204, 204, 204);
-  border: none;
-  border-radius: 13px 13px 13px 13px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2) inset;
-}
-
-#nav-search .icon {
-  position: absolute;
-  display: block;
-  top: 4px;
-  right: 4px;
-  width: 14px;
-  height: 15px;
-  background: url("https://abs.twimg.com/a/1374049044/t1/img/twitter_web_sprite_icons.png") -20px -710px no-repeat transparent;
-  border: none;
-  text-indent: -200px;
-  padding: 0;
-  cursor: pointer;
-}
 
 .flux {
   width: 42%;
@@ -485,8 +463,9 @@ const boolBoxMessage = ref(false);
 nav {
   width: fit-content;
   height: fit-content;
-  top: -3rem;
-  right: -4rem;
+  position: fixed;
+  top: 0.5rem;
+  left: 10rem;
   font-size: 1rem;
   padding: 1rem;
 }
@@ -498,7 +477,6 @@ nav a.router-link-exact-active {
 
 nav a {
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
   border-radius: 15px;
 }
 
@@ -515,7 +493,6 @@ nav ul {
 nav ul li {
   list-style-type: none;
   border: none;
-  border-radius: 15px;
 }
 
 .routerLink {
@@ -534,20 +511,7 @@ nav ul li {
 }
 
 .iconTwitter {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 3rem;
+  height: 3rem;
 }
-
-#bgIconTwitter {
-  border-radius: 50px;
-  margin-left: 8px;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding-left: 9px;
-  padding-top: 9px;
-}
-
-#bgIconTwitter:hover {
-  background-color: rgb(29, 155, 240, 0.2);
-  cursor: pointer;
-}</style>
+</style>
