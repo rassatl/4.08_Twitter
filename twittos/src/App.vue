@@ -2,7 +2,19 @@
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import TrendComponent from './components/TrendComponent.vue'
 import WhoToFollowComponent from './components/WhoToFollowComponent.vue'
+import { ref } from 'vue'
 const route = useRoute();
+function OpenMessageBox() {
+  var msgBox = document.getElementById("boiteMessage");
+  msgBox.style.height = "50rem";
+  boolBoxMessage.value = true;
+}
+function CloseMessageBox() {
+  var msgBox = document.getElementById("boiteMessage");
+  msgBox.style.height = "25rem";
+  boolBoxMessage.value = false;
+}
+const boolBoxMessage = ref(false);
 </script>
 
 <template>
@@ -14,13 +26,17 @@ const route = useRoute();
 
   <div id="trends">
     <h3>Trends for you</h3>
-    <TrendComponent/>
-    <a href="/explore"><div id="buttonTwitter">Show More</div></a>
+    <TrendComponent />
+    <a href="/explore">
+      <div id="buttonTwitter">Show More</div>
+    </a>
   </div>
   <div id="follows">
     <h3>Who to follow</h3>
-    <WhoToFollowComponent/>
-    <a href="/explore"><div id="buttonTwitter">Show More</div></a>
+    <WhoToFollowComponent />
+    <a href="/explore">
+      <div id="buttonTwitter">Show More</div>
+    </a>
   </div>
 
   <div id="terms">
@@ -191,10 +207,142 @@ const route = useRoute();
   <div class="flux">
     <RouterView />
   </div>
+  <div id="blocDataCompte">
+    <div id="avatar">L</div>
+    <div id="containerAvatar">
+      <div>Lou RASSAT</div>
+      <P>@Louuleloup</P>
+    </div>
+    <div id="dots">...</div>
+  </div>
+
+  <div id="boiteMessage">
+    <div id="bandeauMessage">
+      <h1>Messages</h1>
+      <div id="blocDroitMessage">
+        <div id="blocSVG">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <g>
+              <path
+                d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5V12h-2v-1.537l-8 3.635-8-3.635V18.5c0 .276.224.5.5.5H13v2H4.498c-1.381 0-2.5-1.119-2.5-2.5v-13zm2 2.766l8 3.635 8-3.635V5.5c0-.276-.224-.5-.5-.5h-15c-.276 0-.5.224-.5.5v2.766zM19 18v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z">
+              </path>
+            </g>
+          </svg>
+          <div @click="OpenMessageBox();">
+            <svg viewBox="0 0 24 24" aria-hidden="true" v-if="!boolBoxMessage" class="icon">
+              <g>
+                <path
+                  d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
+                </path>
+              </g>
+            </svg>
+          </div>
+          <div @click="CloseMessageBox();">
+            <svg viewBox="0 0 24 24" aria-hidden="true" v-if="boolBoxMessage" class="icon">
+              <g>
+                <path
+                  d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
+                </path>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-#terms{
+*{
+  transition: all 255ms ease-in-out;
+}
+#boiteMessage {
+  width: 25%;
+  height: 25rem;
+  background-color: white;
+  border-radius: 25px;
+  bottom: -22rem;
+  right: 5rem;
+  z-index: 999;
+  position: fixed;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#bandeauMessage {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin: 1rem;
+  margin-top: 0.1rem;
+}
+
+#blocDroitMessage {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 100%;
+}
+
+#blocDroitMessage svg {
+  margin-left: 1rem;
+}
+
+#blocDroitMessage svg:hover {
+  cursor: pointer;
+}
+
+#blocSVG {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#dots {
+  font-size: 2.5rem;
+  top: -0.7rem;
+  right: -2rem;
+}
+
+#blocDataCompte {
+  bottom: 1rem;
+  left: 9rem;
+  display: flex;
+  min-width: 15rem;
+  width: fit-content;
+  height: 5rem;
+  border-radius: 50px;
+  background-color: white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+#blocDataCompte:hover {
+  background-color: rgb(201, 201, 201);
+  cursor: pointer;
+}
+
+#containerAvatar {
+  width: fit-content;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+#avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100px;
+  background-color: rgba(69, 90, 100, 255);
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+#terms {
   background-color: none;
   color: Black;
   width: 20rem;
@@ -206,7 +354,7 @@ const route = useRoute();
   z-index: 999;
 }
 
-#follows{
+#follows {
   background-color: #eaecec;
   color: Black;
   width: 20rem;
@@ -217,22 +365,24 @@ const route = useRoute();
   top: 25rem;
   z-index: 999;
 }
-#follows h3{
-    font-weight: bold;
-    margin-bottom: 10px;
+
+#follows h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-#follows #buttonTwitter{
+#follows #buttonTwitter {
   background-color: transparent;
   color: #1DA1F2;
   margin-top: 5px;
   text-align: center;
 }
-#follows #buttonTwitter:hover{
+
+#follows #buttonTwitter:hover {
   background-color: rgb(201, 201, 201);
 }
 
-#trends{
+#trends {
   background-color: #eaecec;
   color: Black;
   width: 20rem;
@@ -242,20 +392,23 @@ const route = useRoute();
   right: 8rem;
   z-index: 999;
 }
-#trends h3{
-    font-weight: bold;
-    margin-bottom: 10px;
+
+#trends h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-#trends #buttonTwitter{
+#trends #buttonTwitter {
   background-color: transparent;
   color: #1DA1F2;
   margin-top: 5px;
   text-align: center;
 }
-#trends #buttonTwitter:hover{
+
+#trends #buttonTwitter:hover {
   background-color: rgb(201, 201, 201);
 }
+
 #wrap {
   margin-top: 1rem;
   display: flex;
@@ -331,8 +484,9 @@ const route = useRoute();
 
 nav {
   width: fit-content;
-  margin-top: 1rem;
-  margin-left: 1rem;
+  height: fit-content;
+  top: -3rem;
+  right: -4rem;
   font-size: 1rem;
   padding: 1rem;
 }
@@ -342,12 +496,7 @@ nav a.router-link-exact-active {
   font-weight: bold;
 }
 
-/*nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}*/
-
 nav a {
-  display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
   border-radius: 15px;
@@ -360,7 +509,7 @@ nav a:first-of-type {
 nav ul {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 }
 
 nav ul li {
@@ -373,6 +522,10 @@ nav ul li {
   display: flex;
   align-items: center;
   width: fit-content;
+}
+
+.routerLink h1 {
+  margin-left: 2rem;
 }
 
 .icon {
@@ -397,5 +550,4 @@ nav ul li {
 #bgIconTwitter:hover {
   background-color: rgb(29, 155, 240, 0.2);
   cursor: pointer;
-}
-</style>
+}</style>

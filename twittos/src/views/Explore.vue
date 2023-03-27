@@ -1,23 +1,30 @@
 <script>
+import TrendComponent from '../components/TrendComponent.vue'
 export default {
   mounted() {
-    document.title = 'Explore / Twitter';
+    document.title = "Explore / Twitter";
   },
+  components: { TrendComponent }
 };
 </script>
 
 <template>
   <div class="explore">
-    <h1>This is an explore page</h1>
+    <h1>Trends for you</h1>
+    <div id="trends">
+      <TrendComponent />
+      <a href="/explore">
+        <div id="buttonTwitter">Show More</div>
+      </a>
+    </div>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .explore {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style scoped>
+.explore {
+  min-height: 100vh;
+}
+.explore h1{
+  font-weight: bold;
 }
 </style>

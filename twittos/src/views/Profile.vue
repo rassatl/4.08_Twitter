@@ -1,8 +1,11 @@
 <script>
+import TrendComponent from '../components/TrendComponent.vue'
+
 export default {
   mounted() {
     document.title = 'Profile / Twitter';
   },
+    components: { TrendComponent }
 };
 </script>
 
@@ -12,7 +15,7 @@ export default {
       <div id="componentHeader">
         <div id="imgComponent">
           <RouterLink to="/" class="routerLink">
-          <div id="img">
+            <div id="img">
               <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                 <g>
                   <path
@@ -20,8 +23,8 @@ export default {
                   <path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z" />
                 </g>
               </svg>
-          </div>
-        </RouterLink>
+            </div>
+          </RouterLink>
         </div>
         <div id="headerInfo">
           <h3>Lou RASSAT</h3>
@@ -73,15 +76,23 @@ export default {
           <li>Likes</li>
         </ul>
       </div>
+      <div id="trends">
+        <h3>Trends for you</h3>
+        <TrendComponent />
+        <a href="/explore">
+          <div id="buttonTwitter">Show More</div>
+        </a>
+      </div>
     </main>
   </div>
 </template>
 
 
 <style scoped>
-.routerLink{
+.routerLink {
   background-color: white;
 }
+
 #navBarProfil {
   margin-top: 1rem;
 }
@@ -238,5 +249,4 @@ h3 {
 .profile {
   top: -80px;
   height: 100vh;
-}
-</style>
+}</style>
