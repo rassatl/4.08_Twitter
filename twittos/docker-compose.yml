@@ -1,7 +1,3 @@
-networks:
-  twittos_network:
-    driver: bridge
-    
 services:
 
   web:
@@ -14,8 +10,6 @@ services:
     depends_on:
       - db
     command: ["npm", "start"]
-    networks:
-      - twittos_network
 
   db:
     image: mariadb
@@ -26,16 +20,14 @@ services:
       MYSQL_PASSWORD: mon_mot_de_passe
     volumes:
       - ./db-lib:/var/lib/mysql
-    networks:
-      - twittos_network
+    ports:
+      - 5005:3306
+    
 
   pma:
     image: phpmyadmin/phpmyadmin
     ports:
       - 8081:80
-
-    networks:
-      - twittos_network
 
 
 # docker compose up

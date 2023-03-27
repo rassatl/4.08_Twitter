@@ -1,14 +1,16 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
 const app = express();
-
 // MySQL Connection Pool
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'mon_user',
-  password: 'mon_mot_de_passe',
+  host:'localhost',
+  port: 5005,
+  user: 'root',
+  password: 'root',
   database: 'ma_base_de_donnees'
 });
+
+
 
 // GET route to retrieve data from the database
 app.get('/data', async (req, res) => {
