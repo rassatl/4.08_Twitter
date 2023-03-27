@@ -1,46 +1,31 @@
 const express = require('express');
-const mysql = require('mysql');
-const app = express();
-const port = 3000;
+const mysql = require('mysql2/promise');
 
-// Create a MySQL connection pool
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'mariadb',
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+const config = {
+  host: 'localhost',
   user: 'mon_user',
   password: 'mon_mot_de_passe',
   database: 'ma_base_de_donnees'
+};
+
+app.get('/data', async (req, res) => {
+  try {
+    const connection = await mysql.createConnection(config);
+    const [rows] = await connection.execute('SELECT * FROM tweet');
+    res.json(rows);
+    connection.end();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error retrieving data from database');
+  }
 });
 
-// Define a route to retrieve data from the MySQL database
-app.get('/api/data', (req, res) => {
-  // Get a connection from the pool
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Error getting MySQL connection', err);
-      res.status(500).send('Error getting MySQL connection');
-      return;
-    }
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
-    // Execute the MySQL query
-    connection.query('SELECT * FROM tweet', (err, results) => {
-      // Release the connection back to the pool
-      connection.release();
 
-      if (err) {
-        console.error('Error executing MySQL query', err);
-        res.status(500).send('Error executing MySQL query');
-        return;
-      }
-
-      // Send the results as a JSON response
-      res.json(results);
-    });
-  });
-});
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-
-//node server.js
+//npm install express mysql2
+//npm run server   
