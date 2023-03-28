@@ -1,5 +1,4 @@
 services:
-
   web:
     build: .
     ports:
@@ -23,11 +22,7 @@ services:
     ports:
       - 5005:3306
     
-
   pma:
     image: phpmyadmin/phpmyadmin
     ports:
       - 8081:80
-
-
-# docker compose up

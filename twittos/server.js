@@ -10,8 +10,6 @@ const pool = mysql.createPool({
   database: 'ma_base_de_donnees'
 });
 
-
-
 // GET route to retrieve data from the database
 app.get('/data', async (req, res) => {
   try {
@@ -28,7 +26,3 @@ app.get('/data', async (req, res) => {
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-
-//npm install express mysql2
-//npm run server   

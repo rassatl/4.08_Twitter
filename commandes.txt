@@ -1,0 +1,29 @@
+
+cd .\twittos\
+
+npm install express mysql2
+
+        //SQL//
+
+type init.sql  > ./db-lib/init.sql    (pour copier le init.sql de twittos et le mettre ds le dossier db-lib)
+
+cat ./db-lib/init.sql | docker exec -i twittos-db-1 mysql -u mon_user -pmon_mot_de_passe ma_base_de_donnees 
+                                (bien changer les valeurs apres -u --> user, mdp, bd)
+                ou
+cat ./db-lib/init.sql | docker exec -i twittos-db-1 mysql -u root -proot
+
+        //DockerComose//
+
+docker-compose up
+
+        //API//
+
+npm run server 
+
+        //Docker//
+
+docker ps /   docker ps -a  / docker images / docker network  --> Commandes pour afficher des datas
+
+# Procedure pour lancer :
+docker build -t twittos .
+Docker run -p 8000:80 -it --name twittos twittos
