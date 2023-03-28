@@ -34,9 +34,9 @@ var arraySil = {
         <template #myMsg>
             <div v-if="!arraySil.messages.sender">
                 <ul>
-                    <li v-for="msg in arraySil.messages" :id="msg.sender ? 'me' : 'friend'">
-                        <div id="bgli">
-                            {{ msg.commentaire }}
+                    <li v-for="msg in arraySil.messages" :id="msg.sender ? 'droite' : 'gauche'">
+                        <div class="bgli">
+                            <p :id="msg.sender ? 'me' : 'friend'">{{ msg.commentaire }}</p>
                         </div>
                     </li>
                 </ul>
@@ -45,15 +45,30 @@ var arraySil = {
                 <p>Object not received!</p>
             </div>
         </template>
-        <template #friendMsg>
-            test
-        </template>
     </ItemChatBox>
 </template>
 
 
 <style scoped>
 #me {
+    background-color: rgb(29, 155, 240);
+    padding: 1rem;
+    border-radius: 30px;
+    border-bottom-right-radius: 4px;
+    color:white;
+    font-family: arial;
+}
+
+#friend {
+    background-color: rgb(239, 243, 244);
+    padding: 1rem;
+    border-radius: 30px;
+    border-bottom-left-radius: 4px;
+    color:black;
+    font-family: arial;
+}
+
+#droite {
     color: black;
     float: right;
     display: flex;
@@ -61,17 +76,19 @@ var arraySil = {
     width: 100%;
 }
 
-#friend {
+#gauche {
     color: black;
     float: left;
     display: flex;
     width: 100%;
+    margin-left: -40px;
 }
-#bgli{
-    background-color: red;
+
+.bgli {
     padding: 10px 20px;
     border-radius: 10px;
 }
+
 ul {
     list-style: none;
     display: flex;
@@ -82,5 +99,4 @@ ul {
 
 ul li {
     width: fit-content;
-}
-</style>
+}</style>

@@ -4,7 +4,7 @@ import ChatBoxComponent from '../components/ChatBoxComponent.vue'
 </script>
 
 <template>
-  <div id="containerMessagesBox">
+  <div id="containerMsg">
     <div class="messages">
       <div id="bandeauMessage">
         <h1>Messages</h1>
@@ -29,15 +29,23 @@ import ChatBoxComponent from '../components/ChatBoxComponent.vue'
       </div>
       <div id="blocDivMsg">
         <FriendMessageComponent />
-        <ChatBoxComponent />
-
       </div>
+    </div>
+    <div>
+      <ChatBoxComponent/>
+
     </div>
   </div>
 </template>
 
 
 <style>
+#containerMsg{
+  display: flex;
+  width: fit-content;
+}
+
+
 #blocDivMsg {
   border-right-width: 3px;
   border-right-style: solid;
@@ -46,9 +54,8 @@ import ChatBoxComponent from '../components/ChatBoxComponent.vue'
 
 .messages {
   min-height: 100vh;
-}
+  max-width: 25vw;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-#containerMessagesBox{
-  display: flex;
 }
 </style>

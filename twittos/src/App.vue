@@ -10,9 +10,9 @@ const route = useRoute();
 </script>
 
 <template>
-  <SearchBar  v-if="route.name != 'messages'"/>
-
-  <div id="trends"  v-if="route.name != 'messages'">
+  <SearchBar id="searchBarApp" v-if="route.name != 'messages'" />
+  
+  <div id="trends" v-if="route.name != 'messages'">
     <h3>Trends for you</h3>
     <TrendComponent />
     <a href="/explore">
@@ -31,12 +31,13 @@ const route = useRoute();
     <p>
       Terms of Service Privacy Policy Cookie Policy Accessibility Ads info More © 2023 Twitter, Inc.
     </p>
+    <button>Connection</button>
   </div>
 
   <header>
     <NavBar />
   </header>
-    <RouterView class="flux" />
+  <RouterView class="flux" />
   <div id="blocDataCompte">
     <div id="containerData">
       <div id="avatar">L</div>
@@ -47,13 +48,10 @@ const route = useRoute();
     </div>
     <div id="dots">...</div>
   </div>
-
-  <MessageBox v-if="route.name != 'messages'"/>
+  <MessageBox v-if="route.name != 'messages'" />
 </template>
 
 <style scoped>
-
-
 #dots {
   font-size: 2.5rem;
   padding-bottom: 3vh;
@@ -142,6 +140,17 @@ const route = useRoute();
   background-color: rgb(201, 201, 201);
 }
 
+#searchBarApp {
+  color: Black;
+  width: 21vw;
+  padding: 10px;
+  border-radius: 13px;
+  position: fixed;
+  top: 1rem;
+  right: 13rem;
+  z-index: 600;
+}
+
 #trends {
   background-color: #eaecec;
   color: Black;
@@ -177,5 +186,4 @@ const route = useRoute();
   left: 25%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
 </style>

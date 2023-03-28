@@ -1,6 +1,12 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
 const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 // MySQL Connection Pool
 const pool = mysql.createPool({
   host:'localhost',
@@ -9,6 +15,7 @@ const pool = mysql.createPool({
   password: 'root',
   database: 'ma_base_de_donnees'
 });
+
 
 // GET route to retrieve data from the database
 app.get('/profil', async (req, res) => {

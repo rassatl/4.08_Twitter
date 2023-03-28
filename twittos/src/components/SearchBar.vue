@@ -2,19 +2,18 @@
     <div class="search-container">
         <div class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search Twitter">
+            <input type="text" :placeholder="placeholder">
         </div>
     </div>
 </template>
   
 <style>
 .search-container {
-  display: flex;
-  position: fixed;
-  right: 13rem;
-  align-items: center;
-  z-index: 999;
-  width: 20vw;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    width: 20vw;
+    flex: 1;
 }
 
 
@@ -24,13 +23,13 @@
     background-color: #f5f8fa;
     border-radius: 30px;
     padding: 5px 1px;
-    padding-right: 100px;
+    flex: 1;
 }
 
 .fa-search {
     font-size: 20px;
     margin-right: 5px;
-    color: #aab8c2;
+    color: #aab8c2
 }
 
 input[type="text"] {
@@ -38,14 +37,17 @@ input[type="text"] {
     outline: none;
     background-color: transparent;
     font-size: 16px;
-    color: #1da1f2;
+    color: Black;
     width: 100%;
     padding: 0 10px;
 }
 </style>
   
-<script>
-export default {
-    name: "SearchBar",
-};
+<script setup>
+const props = defineProps({
+    placeholder: {
+        default: "Search Twitter",
+        required: false,
+    }
+});
 </script>
