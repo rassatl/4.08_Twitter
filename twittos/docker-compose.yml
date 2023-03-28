@@ -1,16 +1,14 @@
 services:
-
-  web:
-    build: .
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./src:/usr/src/app/src
-      - ./public:/usr/src/app/public
-    depends_on:
-      - db
-    command: ["npm", "start"]
-
+  # web:
+  #   build: .
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./src:/usr/src/app/src
+  #     - ./public:/usr/src/app/public
+  #   depends_on:
+  #     - db
+  #   command: ["npm", "start"]
   db:
     image: mariadb
     environment:
@@ -23,11 +21,22 @@ services:
     ports:
       - 5005:3306
     
-
   pma:
     image: phpmyadmin/phpmyadmin
     ports:
       - 8081:80
-
-
-# docker compose up
+  
+  # nginx:
+  #   image: nginx
+  #   ports:
+  #       - "8000:80"
+  #   volumes:
+  #       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+  # node:
+  #   build:
+  #       dockerfile: docker/node/Dockerfile
+  #       context: ./
+  #   volumes:
+  #       - ../twittos:/src/app
+  #   tty: true
+  
