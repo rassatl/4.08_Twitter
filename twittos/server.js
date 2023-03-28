@@ -11,7 +11,33 @@ const pool = mysql.createPool({
 });
 
 // GET route to retrieve data from the database
-app.get('/data', async (req, res) => {
+app.get('/profil', async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    const [rows, fields] = await connection.execute('SELECT * FROM profil');
+    connection.release();
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving data from database');
+  }
+  
+});
+
+app.get('/mp', async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    const [rows, fields] = await connection.execute('SELECT * FROM mp');
+    connection.release();
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving data from database');
+  }
+  
+});
+
+app.get('/tweet', async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [rows, fields] = await connection.execute('SELECT * FROM tweet');
@@ -21,6 +47,7 @@ app.get('/data', async (req, res) => {
     console.error(error);
     res.status(500).send('Error retrieving data from database');
   }
+  
 });
 
 // Start the server
