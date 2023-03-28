@@ -11,9 +11,10 @@
 .search-container {
   display: flex;
   position: fixed;
-  right: 15rem;
+  right: 13rem;
   align-items: center;
   z-index: 999;
+  width: 20vw;
 }
 
 
