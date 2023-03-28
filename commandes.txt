@@ -5,20 +5,22 @@ npm install express mysql2
 
         //SQL//
 
-type init.sql  > ./db-lib/init.sql    (pour copier le init.sql de twittos et le mettre ds le dossier db-lib)
-
-cat ./db-lib/init.sql | docker exec -i twittos-db-1 mysql -u mon_user -pmon_mot_de_passe ma_base_de_donnees 
-                                (bien changer les valeurs apres -u --> user, mdp, bd)
-                ou
-cat ./db-lib/init.sql | docker exec -i twittos-db-1 mysql -u root -proot
+cat ./db-lib/init.sql | docker exec -i twittos-db-1 mysql -u root -proot  (lancer init.sql)
+                        ou
+cat ./db-lib/del.sql | docker exec -i twittos-db-1 mysql -u root -proot (lancer del.sql)
 
         //DockerComose//
 
-docker-compose up
-
+docker compose up -d
+docker compose exec node npm install
+docker compose exec node npm run dev -- --host --port 5000
+            (http://localhost:8081)
+            (http://localhost:8000)
+            
         //API//
 
 npm run server 
+            (http://localhost:3000/data)
 
         //Docker//
 
