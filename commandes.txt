@@ -1,7 +1,7 @@
 
 cd .\twittos\
 
-npm install express mysql2
+npm install express mysql2 cors 
 
         //SQL//
 
@@ -20,7 +20,9 @@ docker compose exec node npm run dev -- --host --port 5000
         //API//
 
 npm run server 
-            (http://localhost:3000/data)
+            (http://localhost:3000/tweet)
+            (http://localhost:3000/mp)
+            (http://localhost:3000/profil)
 
         //Docker//
 
