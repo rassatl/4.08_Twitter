@@ -5,6 +5,8 @@ import WhoToFollowComponent from './components/WhoToFollowComponent.vue'
 import SearchBar from './components/SearchBar.vue'
 import NavBar from './components/NavBar.vue'
 import MessageBox from './components/MessageBox.vue'
+import AuthBanner from './components/Auth/AuthBanner.vue'
+
 const route = useRoute();
 
 </script>
@@ -49,6 +51,7 @@ const route = useRoute();
     <div id="dots">...</div>
   </div>
   <MessageBox v-if="route.name != 'messages'" />
+  <AuthBanner/>
 </template>
 
 <style scoped>
