@@ -1,4 +1,5 @@
-<script setup>
+<script>
+import { insertData } from './stores/dataService.js'
 import { ref } from 'vue';
 /*
 import { InsertTweet } from '../../../server.js';
@@ -14,7 +15,35 @@ const form = ref({
 function callFunctionInsert() {
     InsertTweet(form);
 }*/
-
+export default {
+    name: 'MyComponent',
+    data() {
+        return {
+            fullname: 'John Doe',
+            username: 'johndoe',
+            pwd: 'password',
+            mail: 'johndoe@example.com',
+            birthdate: '1990-01-01',
+        }
+    },
+    methods: {
+        async submitData() {
+            const data = {
+                fullname: this.fullname,
+                username: this.username,
+                pwd: this.pwd,
+                mail: this.mail,
+                birthdate: this.birthdate
+            };
+            try {
+                const rows = await insertData(data);
+                console.log(`Inserted ${rows.affectedRows} rows`);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
+}
 </script>
 <template>
     <div id="containerAll">
@@ -38,43 +67,37 @@ function callFunctionInsert() {
             </div>
             <h1>Sign up to Twitter</h1>
             <div class="group">
-                <!-- v-model="form.mail" -->
-                <input required type="text" class="input">
+                <input v-model="form.mail" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Email</label>
             </div>
             <div class="group">
-                <!-- v-model="form.pwd"  -->
-                <input required type="text" class="input">
+                <input v-model="form.pwd" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Password</label>
             </div>
             <div class="group">
-                <!-- v-model="form.pwd" -->
-                <input required type="text" class="input">
+                <input v-model="form.pwd" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Password confirmation</label>
             </div>
             <div class="group">
-                <!-- v-model="form.birthdate"  -->
-                <input required type="text" class="input">
+                <input  v-model="form.birthdate" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Birthdate</label>
             </div>
-            <div class="group">
-                <!-- v-model="form.fullname"  -->
-                <input required type="text" class="input">
+            <div  class="group">
+                <input v-model="form.fullname" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Full Name</label>
             </div>
             <div class="group">
-                <!-- v-model="form.username"  -->
-                <input required type="text" class="input">
+                <input v-model="form.username" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Username</label>
@@ -87,7 +110,6 @@ function callFunctionInsert() {
 </template>
 
 <style scoped>
-
 span {
     color: #3BA9EE;
     cursor: pointer;
