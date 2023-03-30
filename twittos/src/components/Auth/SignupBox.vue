@@ -1,48 +1,23 @@
-<script>
-import { insertData } from './stores/dataService.js'
+<script setup>
 import { ref } from 'vue';
-/*
-import { InsertTweet } from '../../../server.js';
+import axios from 'axios'
 
 const form = ref({
-    fullname,
-    username,
-    pwd,
-    mail,
-    birthdate
+    fullname: '',
+    username: '',
+    pwd: '',
+    mail: '',
+    birthdate: ''
 })
 
-function callFunctionInsert() {
-    InsertTweet(form);
-}*/
-export default {
-    name: 'MyComponent',
-    data() {
-        return {
-            fullname: 'John Doe',
-            username: 'johndoe',
-            pwd: 'password',
-            mail: 'johndoe@example.com',
-            birthdate: '1990-01-01',
-        }
-    },
-    methods: {
-        async submitData() {
-            const data = {
-                fullname: this.fullname,
-                username: this.username,
-                pwd: this.pwd,
-                mail: this.mail,
-                birthdate: this.birthdate
-            };
-            try {
-                const rows = await insertData(data);
-                console.log(`Inserted ${rows.affectedRows} rows`);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    }
+function callFunctionInsertProfil() {
+    axios.post('http://localhost:3000/profil', form.value)
+        .then(response => {
+            console.log(response); //possible redirection
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 </script>
 <template>
@@ -85,12 +60,12 @@ export default {
                 <label>Password confirmation</label>
             </div>
             <div class="group">
-                <input  v-model="form.birthdate" required type="text" class="input">
+                <input v-model="form.birthdate" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Birthdate</label>
             </div>
-            <div  class="group">
+            <div class="group">
                 <input v-model="form.fullname" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
@@ -102,7 +77,7 @@ export default {
                 <span class="bar"></span>
                 <label>Username</label>
             </div>
-            <button id="buttonSignIn" @click="callFunctionInsert()">Sign up</button>
+            <button id="buttonSignIn" @click="callFunctionInsertProfil()">Sign up</button>
             <p>Already have an account? <span @click="$emit('falseLogin', true); $emit('falseSignup', false)">Sign in</span>
             </p>
         </div>

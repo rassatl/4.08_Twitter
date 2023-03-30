@@ -1,6 +1,29 @@
 <script setup>
 import WelcomeItem from './WelcomeItem.vue'
 import TweetComponent from './TweetComponent.vue'
+
+import { ref } from 'vue';
+import axios from 'axios'
+//idProfil,msg, obj, reply, retweet, lik, view 
+const tweet = ref({
+  idProfil: 1,
+  msg: '',
+  obj: '',
+  reply: 0,
+  retweet: 0,
+  lik: 0,
+  view: 0
+})
+
+function callFunctionInsertTweet() {
+    axios.post('http://localhost:3000/tweet', tweet.value)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
 </script>
 
 <template>
@@ -17,7 +40,7 @@ import TweetComponent from './TweetComponent.vue'
         <div id="pictureProfile">
           <p>L</p>
         </div>
-        <textarea id="textAreaTweet" name="story" rows="5" cols="33" placeholder="What's happening?"></textarea>
+        <textarea id="textAreaTweet" v-model="tweet.msg" name="story" rows="5" cols="33" placeholder="What's happening?"></textarea>
       </div>
       <div id="containerIconTweetButton">
         <div id="containerIcons">
@@ -76,7 +99,7 @@ import TweetComponent from './TweetComponent.vue'
             </svg>
           </div>
         </div>
-        <button id="buttonTwitter">Tweet</button>
+        <button id="buttonTwitter" @click="callFunctionInsertTweet()">Tweet</button>
       </div>
     </div>
 

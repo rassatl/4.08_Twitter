@@ -1,3 +1,28 @@
+<script setup>
+import { ref } from 'vue';
+import axios from 'axios'
+//login 
+const tweet = ref({
+  idProfil: 1,
+  msg: '',
+  obj: '',
+  reply: 0,
+  retweet: 0,
+  lik: 0,
+  view: 0
+})
+
+function callFunctionInsertTweet() {
+    axios.post('http://localhost:3000/tweet', tweet.value)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+</script>
+
 <template>
     <div id="containerAll">
         <div id="containerLogInBox">
