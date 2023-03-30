@@ -12,11 +12,10 @@ function OpenSignUpVue() {
 const boolConnected = ref(false);
 const boolLoginVue = ref(false);
 const boolSigninVue = ref(false);
-
 </script>
 
 <template>
-    <loginBox @falseLogin="(i) => boolLoginVue = i"  v-if="boolLoginVue" />
+    <loginBox @falseLogin="(i) => boolLoginVue = i" @login="(i) => {boolLoginVue = i; boolConnected = !i}"  v-if="boolLoginVue" />
     <signupBox @falseLogin="(i) => boolLoginVue = i" @falseSignup="(i) => boolSigninVue = i" v-if="boolSigninVue" />
 
     <div v-if="!boolConnected" id="blueBanner">

@@ -2,20 +2,17 @@
 import { ref } from 'vue';
 import axios from 'axios'
 //login 
-const tweet = ref({
-  idProfil: 1,
-  msg: '',
-  obj: '',
-  reply: 0,
-  retweet: 0,
-  lik: 0,
-  view: 0
+const login = ref({
+  username: '',
+  pwd: ''
 })
 
-function callFunctionInsertTweet() {
-    axios.post('http://localhost:3000/tweet', tweet.value)
+const emit = defineEmits(['login'])
+
+function callFunctionInsertLogin() {
+    axios.post('http://localhost:3000/login', login.value)
         .then(response => {
-            console.log(response);
+            emit('login',false)
         })
         .catch(error => {
             console.error(error);
@@ -45,18 +42,18 @@ function callFunctionInsertTweet() {
             </div>
             <h1>Log in to Twitter</h1>
             <div class="group">
-                <input required type="text" class="input">
+                <input v-model="login.username" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Username</label>
             </div>
             <div class="group">
-                <input required type="text" class="input">
+                <input v-model="login.pwd" required type="text" class="input">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Password</label>
             </div>
-            <button id="buttonSignIn">Sign up</button>
+            <button id="buttonSignIn" @click="callFunctionInsertLogin()">Sign up</button>
             <button id="buttonForgotPassword">Forgot Password</button>
 
         </div>

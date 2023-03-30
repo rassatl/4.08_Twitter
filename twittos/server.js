@@ -47,6 +47,23 @@ app.post('/profil', async (req, res) => {
   }
 });
 
+app.post('/login', async (req, res) => {
+  try {
+    const data = req.body;
+    const connection = await pool.getConnection();
+    const [rows, fields] = await connection.execute('SELECT * FROM profil WHERE username = ? AND pwd = ?', [data.username, data.pwd]
+    );
+    connection.release();
+    if (rows.length === 1) {
+      console.log('insert login good');
+      res.json({res:rows});
+    } else {
+      console.log('insert login not good');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 app.get('/mp', async (req, res) => {
   try {
