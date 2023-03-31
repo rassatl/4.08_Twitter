@@ -1,3 +1,3 @@
 FROM node:19
 
-WORKDIR ./twittos
+WORKDIR /usr/src/app
