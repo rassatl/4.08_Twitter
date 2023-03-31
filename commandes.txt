@@ -9,25 +9,28 @@ cat ./db-lib/init.sql | docker exec -i twittos-db-1 mysql -u root -proot  (lance
                         ou
 cat ./db-lib/del.sql | docker exec -i twittos-db-1 mysql -u root -proot (lancer del.sql)
 
-        //DockerComose//
+        //DockerCompose//
 
 docker compose up -d
-docker compose exec node npm install
+docker compose exec node npm install -g npm@8
+
+
+docker compose exec node npm install vite
 docker compose exec node npm run dev -- --host --port 5000
+
+
+# Si les autres marchent ap
+docker-compose exec node sh -c "cd /usr/src/app && npm install vite"
+docker compose exec node sh -c "cd /usr/src/app && npm run dev -- --host --port 5000"
+
             (http://localhost:8081)
             (http://localhost:8000)
             
         //API//
 
 npm run server 
+
             (http://localhost:3000/tweet)
             (http://localhost:3000/mp)
             (http://localhost:3000/profil)
 
-        //Docker//
-
-docker ps /   docker ps -a  / docker images / docker network  --> Commandes pour afficher des datas
-
-# Procedure pour lancer :
-docker build -t twittos .
-Docker run -p 8000:80 -it --name twittos twittos
