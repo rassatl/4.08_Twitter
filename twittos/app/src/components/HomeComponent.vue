@@ -2,14 +2,25 @@
 
 import WelcomeItem from './WelcomeItem.vue'
 import TweetComponent from './TweetComponent.vue'
-import { ref, VueElement } from 'vue'
+import { ref, VueElement, computed } from 'vue'
 import axios from 'axios'
 import { userAuth } from '../stores/AuthStore'
 const authStore = userAuth();
+const tweets = ref([])
+
+setInterval(() => {
+    axios.get('http://localhost:3000/tweet')
+        .then(response => {
+            tweets.value = response.data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}, 1000);
 
 //idProfil,msg, obj, reply, retweet, lik, view 
 const tweet = ref({
-  idProfil: authStore.user.idProfil,
+  idProfil: authStore.user?authStore.user.idProfil:1,
   msg: '',
   obj: '',
   reply: 0,
@@ -21,6 +32,7 @@ function callFunctionInsertTweet() {
   axios.post('http://localhost:3000/tweet', tweet.value)
     .then(response => {
       console.log(response);
+      tweet.value.msg = '';
     })
     .catch(error => {
       console.error(error);
@@ -63,8 +75,7 @@ function showEmojiPopup(textAreaTweet) {
         <div id="pictureProfile">
           <p>L</p>
         </div>
-        <textarea id="textAreaTweet" v-model="tweet.msg" name="story" rows="5" cols="33"
-          placeholder="What's happening?"></textarea>
+        <textarea id="textAreaTweet" v-model="tweet.msg" name="story" rows="5" cols="33" placeholder="What's happening?"></textarea>
       </div>
       <div id="containerIconTweetButton">
         <div id="containerIcons">
@@ -129,7 +140,17 @@ function showEmojiPopup(textAreaTweet) {
 
   </WelcomeItem>
 
-  <TweetComponent />
+  <TweetComponent v-for="tweet in tweets" :key="tweet.idTweet" 
+  :date-tweet="tweet.dateTweet" 
+  :fullname="tweet.fullname"
+  :lik="tweet.lik"
+  :is-verified="tweet.isVerified"
+  :msg="tweet.msg"
+  :view="tweet.view"
+  :reply="tweet.reply"
+  :username="tweet.username"
+  :retweet="tweet.retweet"
+  />
 </template>
 
 
@@ -137,7 +158,7 @@ function showEmojiPopup(textAreaTweet) {
 #boxTopPage {
   position: fixed;
   top: 0px;
-  width: 42%;
+  width: 40vw;
   z-index: 999;
   background-color: rgba(255, 255, 255, 0.5);
   opacity: 1;
