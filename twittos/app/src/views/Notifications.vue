@@ -37,7 +37,7 @@ axios.get('http://localhost:3000/profil')
   <div class="notifications">
     <h1>Tweet</h1>
     <ul v-if="tweets.length > 0">
-      <li v-for="tweet in tweets" :key="tweet.idTweet">{{ tweet.msg }}</li>
+      <li v-for="tweet in tweets" :key="tweet.idTweet">{{ tweet.msg }}{{  tweet.idProfil }}</li>
     </ul>
     <p v-else>Loading tweets ...</p>
 

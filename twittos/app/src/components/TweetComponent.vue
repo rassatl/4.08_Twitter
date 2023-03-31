@@ -20,7 +20,7 @@ axios.get('http://localhost:3000/tweet')
 
 <template>
     <ul v-if="tweets.length > 0">
-
+        <li v-for="tweet in tweets" :key="tweet.idTweet">
         <div class="theTweet">
             <ItemTweet>
                 <template #avatar>
@@ -30,11 +30,14 @@ axios.get('http://localhost:3000/tweet')
                     <h6>{{ authStore.user.fullname }}<g>@{{ authStore.user.username }} · 3min</g>
                     </h6>
                 </template>
-                <li v-for="tweet in tweets" :key="tweet.idTweet">{{ tweet.msg }}</li>
+                <template #contentText> {{ tweet.msg }}
+
+                </template>
             </ItemTweet>
         </div>
-    </ul>
-    <p v-else>Loading tweets ...</p>
+    </li>
+</ul>
+<p v-else>Loading tweets ...</p>
 
 
 <!--     
@@ -146,26 +149,26 @@ axios.get('http://localhost:3000/tweet')
         </ItemTweet>
     </div>
     <div class="theTweet">
-                <ItemTweet>
-                    <template #avatar>
-                    <img src="../assets/avatar1.jpg" alt="Avatar" class="imgAvatar" />
-                </template>
-                <template #name>
-                        <h6>Thoomas <g>@Thoomas · 3min</g>
-                        </h6>
-                    </template>
-                    <template #contentText>Fornite 2023.....
-                        <br>
-                        <div id="hashtag">
-                            <p>#fortnite</p>
-                            <p>#games</p>
-                            <p>#oldtime</p>
-                        </div>
-                    </template>
-                    <template #contentObj>
-                    </template>
-                </ItemTweet>
-            </div> -->
+                            <ItemTweet>
+                                <template #avatar>
+                                <img src="../assets/avatar1.jpg" alt="Avatar" class="imgAvatar" />
+                            </template>
+                            <template #name>
+                                    <h6>Thoomas <g>@Thoomas · 3min</g>
+                                    </h6>
+                                </template>
+                                <template #contentText>Fornite 2023.....
+                                    <br>
+                                    <div id="hashtag">
+                                        <p>#fortnite</p>
+                                        <p>#games</p>
+                                        <p>#oldtime</p>
+                                    </div>
+                                </template>
+                                <template #contentObj>
+                                </template>
+                            </ItemTweet>
+                        </div> -->
 </template>
 
 <style scoped>

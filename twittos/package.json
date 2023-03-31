@@ -7,10 +7,5 @@
   },
   "scripts": {
     "server": "node server.js"
-<<<<<<< HEAD
   }
 }
-=======
-}
-}
->>>>>>> cbfe4e0db50cad6e94d70782738a173006c09ee5
