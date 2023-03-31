@@ -1,15 +1,49 @@
 <script setup>
 import ItemTweet from './TweetItem.vue'
+import axios from 'axios'
+import { userAuth } from '../stores/AuthStore'
+import { ref } from 'vue'
+
+const authStore = userAuth();
+
+const tweets = ref([])
+axios.get('http://localhost:3000/tweet')
+    .then(response => {
+        tweets.value = response.data;
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
 </script>
 
 
 <template>
+    <ul v-if="tweets.length > 0">
+
+        <div class="theTweet">
+            <ItemTweet>
+                <template #avatar>
+                    <img src="../assets/avatar3.jpg" alt="Avatar" class="imgAvatar" />
+                </template>
+                <template #name>
+                    <h6>{{ authStore.user.fullname }}<g>@{{ authStore.user.username }} · 3min</g>
+                    </h6>
+                </template>
+                <li v-for="tweet in tweets" :key="tweet.idTweet">{{ tweet.msg }}</li>
+            </ItemTweet>
+        </div>
+    </ul>
+    <p v-else>Loading tweets ...</p>
+
+
+<!--     
     <div class="theTweet">
         <ItemTweet>
             <template #avatar>
-                <img src="../assets/avatar3.jpg" alt="Avatar" class="imgAvatar" />
-            </template>
-            <template #name>
+            <img src="../assets/avatar3.jpg" alt="Avatar" class="imgAvatar" />
+        </template>
+        <template #name>
                 <h6>Thoomas <g>@Thoomas · 3min</g>
                 </h6>
             </template>
@@ -22,10 +56,6 @@ import ItemTweet from './TweetItem.vue'
                 </div>
             </template>
             <template #contentObj>
-                <!-- <video id="vod" width="380" height="214" controls>
-                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
-                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
-                </video> -->
             </template>
         </ItemTweet>
     </div>
@@ -33,9 +63,9 @@ import ItemTweet from './TweetItem.vue'
     <div class="theTweet">
         <ItemTweet>
             <template #avatar>
-                <img src="../assets/avatar1.jpg" alt="Avatar" class="imgAvatar" />
-            </template>
-            <template #name>
+            <img src="../assets/avatar1.jpg" alt="Avatar" class="imgAvatar" />
+        </template>
+        <template #name>
                 <h6>Thoomas <g>@Thoomas · 3min</g>
                 </h6>
             </template>
@@ -48,10 +78,6 @@ import ItemTweet from './TweetItem.vue'
                 </div>
             </template>
             <template #contentObj>
-                <!-- <video id="vod" width="380" height="214" controls>
-                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
-                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
-                </video> -->
             </template>
         </ItemTweet>
     </div>
@@ -59,9 +85,9 @@ import ItemTweet from './TweetItem.vue'
     <div class="theTweet">
         <ItemTweet>
             <template #avatar>
-                <img src="../assets/avatar2.jpg" alt="Avatar" class="imgAvatar" />
-            </template>
-            <template #name>
+            <img src="../assets/avatar2.jpg" alt="Avatar" class="imgAvatar" />
+        </template>
+        <template #name>
                 <h6>Thoomas <g>@Thoomas · 3min</g>
                 </h6>
             </template>
@@ -74,19 +100,15 @@ import ItemTweet from './TweetItem.vue'
                 </div>
             </template>
             <template #contentObj>
-                <!-- <video id="vod" width="380" height="214" controls>
-                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
-                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
-                </video> -->
             </template>
         </ItemTweet>
     </div>
     <div class="theTweet">
         <ItemTweet>
             <template #avatar>
-                <img src="../assets/avatar3.jpg" alt="Avatar" class="imgAvatar" />
-            </template>
-            <template #name>
+            <img src="../assets/avatar3.jpg" alt="Avatar" class="imgAvatar" />
+        </template>
+        <template #name>
                 <h6>Thoomas <g>@Thoomas · 3min</g>
                 </h6>
             </template>
@@ -99,19 +121,15 @@ import ItemTweet from './TweetItem.vue'
                 </div>
             </template>
             <template #contentObj>
-                <!-- <video id="vod" width="380" height="214" controls>
-                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
-                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
-                </video> -->
             </template>
         </ItemTweet>
     </div>
     <div class="theTweet">
         <ItemTweet>
             <template #avatar>
-                <img src="../assets/avatar.jpg" alt="Avatar" class="imgAvatar" />
-            </template>
-            <template #name>
+            <img src="../assets/avatar.jpg" alt="Avatar" class="imgAvatar" />
+        </template>
+        <template #name>
                 <h6>Thoomas <g>@Thoomas · 3min</g>
                 </h6>
             </template>
@@ -124,38 +142,30 @@ import ItemTweet from './TweetItem.vue'
                 </div>
             </template>
             <template #contentObj>
-                <!-- <video id="vod" width="380" height="214" controls>
-                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
-                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
-                </video> -->
             </template>
         </ItemTweet>
     </div>
     <div class="theTweet">
-        <ItemTweet>
-            <template #avatar>
-                <img src="../assets/avatar1.jpg" alt="Avatar" class="imgAvatar" />
-            </template>
-            <template #name>
-                <h6>Thoomas <g>@Thoomas · 3min</g>
-                </h6>
-            </template>
-            <template #contentText>Fornite 2023.....
-                <br>
-                <div id="hashtag">
-                    <p>#fortnite</p>
-                    <p>#games</p>
-                    <p>#oldtime</p>
-                </div>
-            </template>
-            <template #contentObj>
-                <!-- <video id="vod" width="380" height="214" controls>
-                     <source src=”../assets/contentPost1V2.ogg class="vod" type=video/ogg>
-                    <source src="../assets/contentPost1V2.mp4" class="vod" type=video/mp4> 
-                </video> -->
-            </template>
-        </ItemTweet>
-    </div>
+                <ItemTweet>
+                    <template #avatar>
+                    <img src="../assets/avatar1.jpg" alt="Avatar" class="imgAvatar" />
+                </template>
+                <template #name>
+                        <h6>Thoomas <g>@Thoomas · 3min</g>
+                        </h6>
+                    </template>
+                    <template #contentText>Fornite 2023.....
+                        <br>
+                        <div id="hashtag">
+                            <p>#fortnite</p>
+                            <p>#games</p>
+                            <p>#oldtime</p>
+                        </div>
+                    </template>
+                    <template #contentObj>
+                    </template>
+                </ItemTweet>
+            </div> -->
 </template>
 
 <style scoped>
@@ -192,6 +202,4 @@ p:hover {
 #vod {
     border-radius: 15px;
 }
-
-
 </style>

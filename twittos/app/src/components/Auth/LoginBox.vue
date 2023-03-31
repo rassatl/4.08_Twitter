@@ -1,29 +1,31 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios'
+import { userAuth } from '../../stores/AuthStore'
+
 //login 
 const login = ref({
-  username: '',
-  pwd: ''
+    username: '',
+    pwd: ''
 })
 
-const emit = defineEmits(['login'])
+const authStore = userAuth();
 
-function callFunctionInsertLogin() {
-    axios.post('http://localhost:3000/login', login.value)
-        .then(response => {
-            emit('login',false)
-        })
-        .catch(error => {
-            console.error(error);
-        });
+const emit = defineEmits(['closePageLogin'])
+
+async function callFunctionInsertLogin() {
+    const response = await authStore.login(login.value.username, login.value.pwd);
+    console.log(response);
+    if (response) {
+        emit('closePageLogin', false)
+    }
 }
 </script>
 
 <template>
     <div id="containerAll">
         <div id="containerLogInBox">
-            <div id="closeButton" @click="$emit('falseLogin',false)" >
+            <div id="closeButton" @click="emit('closePageLogin', false)">
                 <svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
@@ -66,7 +68,8 @@ function callFunctionInsertLogin() {
     top: 12px;
     left: 12px;
 }
-#closeButton:hover{
+
+#closeButton:hover {
     cursor: pointer;
 }
 

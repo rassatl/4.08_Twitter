@@ -2,12 +2,14 @@
 
 import WelcomeItem from './WelcomeItem.vue'
 import TweetComponent from './TweetComponent.vue'
-import { ref, VueElement } from 'vue';
+import { ref, VueElement } from 'vue'
 import axios from 'axios'
+import { userAuth } from '../stores/AuthStore'
+const authStore = userAuth();
 
 //idProfil,msg, obj, reply, retweet, lik, view 
 const tweet = ref({
-  idProfil: 1,
+  idProfil: authStore.user.idProfil,
   msg: '',
   obj: '',
   reply: 0,
@@ -15,8 +17,17 @@ const tweet = ref({
   lik: 0,
   view: 0
 })
-   function showEmojiPopup(textAreaTweet) {
-    const emojis = ['😀', '😂', '😍', '👍', '👎', '❤️', '🔥', '🎉']
+function callFunctionInsertTweet() {
+  axios.post('http://localhost:3000/tweet', tweet.value)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+function showEmojiPopup(textAreaTweet) {
+  const emojis = ['😀', '😂', '😍', '👍', '👎', '❤️', '🔥', '🎉']
   const emojiPopup = document.createElement('div')
   emojiPopup.classList.add('emoji-popup')
   emojis.forEach(emoji => {
@@ -52,7 +63,8 @@ const tweet = ref({
         <div id="pictureProfile">
           <p>L</p>
         </div>
-        <textarea id="textAreaTweet" v-model="tweet.msg" name="story" rows="5" cols="33" placeholder="What's happening?"></textarea>
+        <textarea id="textAreaTweet" v-model="tweet.msg" name="story" rows="5" cols="33"
+          placeholder="What's happening?"></textarea>
       </div>
       <div id="containerIconTweetButton">
         <div id="containerIcons">
@@ -117,13 +129,11 @@ const tweet = ref({
 
   </WelcomeItem>
 
-  <TweetComponent/>  
+  <TweetComponent />
 </template>
 
 
 <style>
-
-
 #boxTopPage {
   position: fixed;
   top: 0px;
@@ -177,10 +187,12 @@ const tweet = ref({
   background-color: gray;
   cursor: pointer;
 }
-#containerIconTweetButton{
+
+#containerIconTweetButton {
   display: flex;
   justify-content: space-between;
 }
+
 #TweetArea {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 0px;
   margin-left: -48px;

@@ -1,7 +1,10 @@
 <script setup>
 import loginBox from './LoginBox.vue'
 import signupBox from './SignupBox.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useStorage, useLocalStorage} from '@vueuse/core'
+import { userAuth } from '../../stores/AuthStore'
+
 function OpenLogInVue() {
     boolLoginVue.value = true;
 }
@@ -9,16 +12,19 @@ function OpenSignUpVue() {
     boolSigninVue.value = true;
 
 }
-const boolConnected = ref(false);
+
 const boolLoginVue = ref(false);
 const boolSigninVue = ref(false);
+
+const userLogin = computed(_ => userAuth().isLoggedIn);
+console.log(userAuth().isLoggedIn);
 </script>
 
 <template>
-    <loginBox @falseLogin="(i) => boolLoginVue = i" @login="(i) => {boolLoginVue = i; boolConnected = !i}"  v-if="boolLoginVue" />
+    <loginBox @closePageLogin="(i) => boolLoginVue = i" v-if="boolLoginVue" />
     <signupBox @falseLogin="(i) => boolLoginVue = i" @falseSignup="(i) => boolSigninVue = i" v-if="boolSigninVue" />
 
-    <div v-if="!boolConnected" id="blueBanner">
+    <div v-if="!userLogin" id="blueBanner">
         <div id="containerTexteBanner">
             <p id="title">Don't miss what's happening.</p>
             <p>Twitter users are the f irst to know.</p>

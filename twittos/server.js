@@ -56,7 +56,7 @@ app.post('/login', async (req, res) => {
     connection.release();
     if (rows.length === 1) {
       console.log('insert login good');
-      res.json({res:rows});
+      res.json(rows);
     } else {
       console.log('insert login not good');
     }

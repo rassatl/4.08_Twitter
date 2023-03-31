@@ -6,9 +6,16 @@ import SearchBar from './components/SearchBar.vue'
 import NavBar from './components/NavBar.vue'
 import MessageBox from './components/MessageBox.vue'
 import AuthBanner from './components/Auth/AuthBanner.vue'
+import {userAuth} from './stores/AuthStore'
 
 const route = useRoute();
+userAuth();
 
+const authStore = userAuth();
+
+async function disconnectButton() {
+    await authStore.logout();
+}
 </script>
 
 <template>
@@ -33,7 +40,7 @@ const route = useRoute();
     <p>
       Terms of Service Privacy Policy Cookie Policy Accessibility Ads info More © 2023 Twitter, Inc.
     </p>
-    <button>Connection</button>
+    <button @click="disconnectButton()">Disconnection</button>
   </div>
 
   <header>
