@@ -10,20 +10,22 @@ function OpenLogInVue() {
 }
 function OpenSignUpVue() {
     boolSigninVue.value = true;
-
 }
 
 const boolLoginVue = ref(false);
 const boolSigninVue = ref(false);
 
+const userLogin = computed(_ => userAuth().isLoggedIn);
+
 console.log(userAuth().isLoggedIn);
+console.log(userAuth().user)
 </script>
 
 <template>
     <loginBox @closePageLogin="(i) => boolLoginVue = i" v-if="boolLoginVue" />
     <signupBox @falseLogin="(i) => boolLoginVue = i" @falseSignup="(i) => boolSigninVue = i" v-if="boolSigninVue" />
 
-    <div id="blueBanner">
+    <div v-if="!userLogin" id="blueBanner">
         <div id="containerTexteBanner">
             <p id="title">Don't miss what's happening.</p>
             <p>Twitter users are the f irst to know.</p>

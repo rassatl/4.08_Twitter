@@ -4,6 +4,14 @@ import axios from 'axios'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
+    idTweet: {
+        type: String,
+        default: ""
+    },
+    idProfil: {
+        type: String,
+        default: ""
+    },
     fullname: {
         type: String,
         default: ""

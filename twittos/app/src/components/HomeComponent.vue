@@ -28,7 +28,9 @@ const tweet = ref({
   lik: 0,
   view: 0
 })
+
 function callFunctionInsertTweet() {
+  tweet.value.idProfil = authStore.user.idProfil
   axios.post('http://localhost:3000/tweet', tweet.value)
     .then(response => {
       console.log(response);
@@ -37,6 +39,8 @@ function callFunctionInsertTweet() {
     .catch(error => {
       console.error(error);
     });
+    console.log(authStore.user.idProfil)
+    console.log(authStore.user)
 }
 function showEmojiPopup(textAreaTweet) {
   const emojis = ['😀', '😂', '😍', '👍', '👎', '❤️', '🔥', '🎉']
@@ -141,6 +145,8 @@ function showEmojiPopup(textAreaTweet) {
   </WelcomeItem>
 
   <TweetComponent v-for="tweet in tweets" :key="tweet.idTweet" 
+  :id-tweet="tweet.idTweet" 
+  :id-profil="tweet.idProfil" 
   :date-tweet="tweet.dateTweet" 
   :fullname="tweet.fullname"
   :lik="tweet.lik"
