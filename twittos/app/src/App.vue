@@ -7,6 +7,7 @@ import NavBar from './components/NavBar.vue'
 import MessageBox from './components/MessageBox.vue'
 import AuthBanner from './components/Auth/AuthBanner.vue'
 import {userAuth} from './stores/AuthStore'
+import { ref, computed } from 'vue'
 
 const route = useRoute();
 userAuth();
@@ -16,6 +17,9 @@ const authStore = userAuth();
 async function disconnectButton() {
     await authStore.logout();
 }
+
+const userLogin = computed(_ => userAuth().isLoggedIn);
+
 </script>
 
 <template>
@@ -44,10 +48,10 @@ async function disconnectButton() {
   </div>
 
   <header>
-    <NavBar />
+    <NavBar/>
   </header>
   <RouterView class="flux" />
-  <div id="blocDataCompte">
+  <div id="blocDataCompte" v-if="authStore.user">
     <div id="containerData">
       <div id="avatar">L</div>
       <div id="containerAvatar">
@@ -58,7 +62,7 @@ async function disconnectButton() {
     <div id="dots">...</div>
   </div>
   <MessageBox v-if="route.name != 'messages'" />
-  <AuthBanner/>
+  <AuthBanner v-if="!userLogin" />
 </template>
 
 <style scoped>

@@ -16,7 +16,6 @@ function OpenSignUpVue() {
 const boolLoginVue = ref(false);
 const boolSigninVue = ref(false);
 
-const userLogin = computed(_ => userAuth().isLoggedIn);
 console.log(userAuth().isLoggedIn);
 </script>
 
@@ -24,7 +23,7 @@ console.log(userAuth().isLoggedIn);
     <loginBox @closePageLogin="(i) => boolLoginVue = i" v-if="boolLoginVue" />
     <signupBox @falseLogin="(i) => boolLoginVue = i" @falseSignup="(i) => boolSigninVue = i" v-if="boolSigninVue" />
 
-    <div v-if="!userLogin" id="blueBanner">
+    <div id="blueBanner">
         <div id="containerTexteBanner">
             <p id="title">Don't miss what's happening.</p>
             <p>Twitter users are the f irst to know.</p>

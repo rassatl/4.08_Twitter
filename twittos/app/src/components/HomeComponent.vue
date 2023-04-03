@@ -69,7 +69,7 @@ function showEmojiPopup(textAreaTweet) {
       <button class="buttonFYF">Following</button>
     </div>
   </div>
-  <WelcomeItem>
+  <WelcomeItem v-if="authStore.user">
     <div id="TweetArea">
       <div class="TweetBloc">
         <div id="pictureProfile">

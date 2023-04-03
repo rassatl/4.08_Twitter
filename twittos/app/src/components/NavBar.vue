@@ -1,9 +1,10 @@
 <script setup>
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { userAuth } from '../stores/AuthStore'
 
 import { ref } from 'vue'
 const route = useRoute();
-
+const authStore = userAuth();
 </script>
 
 <template>
@@ -58,7 +59,7 @@ const route = useRoute();
                     <h1>Explore</h1>
                 </RouterLink>
             </li>
-            <li>
+            <li v-if="authStore.user">
                 <RouterLink class="routerLink" to="/notifications">
                     <svg viewBox="0 0 24 24" aria-hidden="true" v-if="route.name != 'notifications'" class="icon">
                         <g>
@@ -77,7 +78,7 @@ const route = useRoute();
                     <h1>Notifications</h1>
                 </RouterLink>
             </li>
-            <li>
+            <li v-if="authStore.user">
                 <RouterLink class="routerLink" to="/messages">
                     <svg viewBox="0 0 24 24" aria-hidden="true" v-if="route.name != 'messages'" class="icon">
                         <g>
@@ -96,7 +97,7 @@ const route = useRoute();
                     <h1>Messages</h1>
                 </RouterLink>
             </li>
-            <li>
+            <li v-if="authStore.user">
                 <RouterLink class="routerLink" to="/bookmarks">
                     <svg viewBox="0 0 24 24" aria-hidden="true" v-if="route.name != 'bookmarks'" class="icon">
                         <g>
@@ -114,7 +115,7 @@ const route = useRoute();
                     <h1>Bookmarks</h1>
                 </RouterLink>
             </li>
-            <li>
+            <li v-if="authStore.user">
                 <RouterLink class="routerLink" to="/lists">
                     <svg viewBox="0 0 24 24" aria-hidden="true" v-if="route.name != 'lists'" class="icon">
                         <g>
@@ -133,7 +134,7 @@ const route = useRoute();
                     <h1>Lists</h1>
                 </RouterLink>
             </li>
-            <li>
+            <li v-if="authStore.user">
                 <RouterLink class="routerLink" to="/profile">
                     <svg viewBox="0 0 24 24" aria-hidden="true" v-if="route.name != 'profile'" class="icon">
                         <g>
@@ -152,7 +153,7 @@ const route = useRoute();
                     <h1>Profile</h1>
                 </RouterLink>
             </li>
-            <li>
+            <li v-if="authStore.user">
                 <RouterLink class="routerLink" to="/more">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                         <g>
@@ -164,7 +165,7 @@ const route = useRoute();
                     <h1>More</h1>
                 </RouterLink>
             </li>
-            <li><button id="buttonTwitter">Tweet</button></li>
+            <li v-if="authStore.user"><button id="buttonTwitter">Tweet</button></li>
         </ul>
     </nav>
 </template>
