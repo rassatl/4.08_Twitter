@@ -20,7 +20,7 @@ setInterval(() => {
 
 //idProfil,msg, obj, reply, retweet, lik, view 
 const tweet = ref({
-  idProfil: authStore.user?authStore.user.idProfil:1,
+  idProfil: 0,
   msg: '',
   obj: '',
   reply: 0,
@@ -30,7 +30,7 @@ const tweet = ref({
 })
 
 function callFunctionInsertTweet() {
-  tweet.value.idProfil = authStore.user.idProfil
+  tweet.value.idProfil = authStore.user.idProfil;
   axios.post('http://localhost:3000/tweet', tweet.value)
     .then(response => {
       console.log(response);

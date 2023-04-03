@@ -26,8 +26,8 @@
     margin-left: -10px;
     margin-right: -10px;
     padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 .trend:hover{
   background-color: rgb(201, 201, 201);

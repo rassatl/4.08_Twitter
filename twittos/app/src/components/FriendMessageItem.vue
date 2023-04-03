@@ -15,9 +15,6 @@
                         <slot name="msgUserArobase"></slot>
                     </div>
                 </div>
-                <p>
-                    <slot name="lastMessage"></slot>
-                </p>
             </div>
         </div>
         <div id="msgDots">
@@ -36,7 +33,6 @@
 * {
     transition: all 120ms ease-in-out;
 }
-
 .msg {
     display: flex;
     font-size: 1rem;
@@ -59,10 +55,6 @@
 #name {
     font-weight: bold;
     padding-right: 0.5rem;
-}
-
-#containerName {
-    display: flex;
 }
 
 #msgDots {

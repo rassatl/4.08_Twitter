@@ -5,6 +5,10 @@ import { userAuth } from '../stores/AuthStore'
 import { ref } from 'vue'
 const route = useRoute();
 const authStore = userAuth();
+
+async function disconnectButton() {
+    await authStore.logout();
+}
 </script>
 
 <template>
@@ -166,102 +170,119 @@ const authStore = userAuth();
                 </RouterLink>
             </li>
             <li v-if="authStore.user"><button id="buttonTwitter">Tweet</button></li>
+            <li v-if="authStore.user" id="logout"><button id="buttonDisconnect" @click="disconnectButton()">Disconnection</button></li>
         </ul>
     </nav>
 </template>
 
 
 <style scoped>
-
+#buttonDisconnect {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 50px;
+    font-size: 1rem;
+    width: 60%;
+    cursor: pointer;
+}
+#buttonDisconnect:hover {
+    background-color: #d5d8d8;
+}
+#logout{
+    display: flex;
+    justify-content: center;
+}
 .twitter {
-  display: inline-block;
-  border-radius: 100%;
-  padding: 10px;
-  height: 4.1rem;
-  left: -1.3rem;
+    display: inline-block;
+    border-radius: 100%;
+    padding: 10px;
+    height: 4.1rem;
+    left: -1.3rem;
 }
 
 .twitter:hover {
-  background-color: rgb(29, 155, 240, 0.2);
-  cursor: pointer;
+    background-color: rgb(29, 155, 240, 0.2);
+    cursor: pointer;
 }
 
 #ademerde {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 
 #buttonTwitter {
-  padding: 10px;
-  background: #1DA1F2;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-weight: bolder;
-  transition: all 0.5s;
-  width: 100%;
+    padding: 10px;
+    background: #1DA1F2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: bolder;
+    transition: all 0.5s;
+    width: 100%;
 }
 
 #buttonTwitter:hover {
-  background: #1684c9;
-  cursor: pointer;
+    background: #1684c9;
+    cursor: pointer;
 }
 
 nav {
-  width: 17vw;
-  height: fit-content;
-  position: fixed;
-  top: 0.5rem;
-  left: 7rem;
-  font-size: 1rem;
-  padding: 1rem;
+    width: 17vw;
+    height: fit-content;
+    position: fixed;
+    top: 0.5rem;
+    left: 7rem;
+    font-size: 1rem;
+    padding: 1rem;
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
-  font-weight: bold;
+    color: var(--color-text);
+    font-weight: bold;
 }
 
 nav a {
-  padding: 0 1rem;
-  border-radius: 15px;
+    padding: 0 1rem;
+    border-radius: 15px;
 }
 
 nav a:first-of-type {
-  border: 0;
+    border: 0;
 }
 
 nav ul {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 nav ul li {
-  list-style-type: none;
-  border: none;
+    list-style-type: none;
+    border: none;
 }
 
 .routerLink {
-  display: flex;
-  align-items: center;
-  width: fit-content;
+    display: flex;
+    align-items: center;
+    width: fit-content;
 }
 
 .routerLink h1 {
-  margin-left: 2rem;
+    margin-left: 2rem;
 }
 
 .icon {
-  width: 1.5rem;
-  height: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .iconTwitter {
-  width: 3rem;
-  height: 3rem;
+    width: 3rem;
+    height: 3rem;
 }
 </style>

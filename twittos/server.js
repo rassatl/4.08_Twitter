@@ -64,17 +64,28 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/mp', async (req, res) => {
+app.get('/mps', async (req, res) => {
   try {
     const connection = await pool.getConnection();
-    const [rows, fields] = await connection.execute('SELECT * FROM mp');
+    const [rows, fields] = await connection.execute('SELECT * FROM mp m join profil p on m.idRecever = p.idProfil order by m.dateMp DESC');
     connection.release();
     res.json(rows);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error retrieving data from database');
   }
+});
 
+app.get('/mp', async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    const [rows, fields] = await connection.execute('SELECT DISTINCT m.idSender, m.idRecever, p.fullname, p.username FROM mp m JOIN profil p on m.idRecever = p.idProfil');
+    connection.release();
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving data from database');
+  }
 });
 app.get('/tweet', async (req, res) => {
   try {

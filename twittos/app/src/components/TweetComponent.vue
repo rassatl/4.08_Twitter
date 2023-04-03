@@ -63,7 +63,7 @@ const props = defineProps({
                 </template>
                 <template #name>
                     <h6>{{ fullname }} <img v-if="isVerified" src="../assets/logo.svg" class="icon" alt="">
-                        <g> @{{ username }} · 3min</g>
+                        <g>@{{ username }} · 3min</g>
                     </h6>
                 </template>
                 <template #contentText> {{ msg }}
@@ -167,7 +167,8 @@ li:hover {
 }
 
 g {
-    color: rgb(83, 100, 113)
+    color: rgb(83, 100, 113);
+    margin-left: 2px;
 }
 
 p {

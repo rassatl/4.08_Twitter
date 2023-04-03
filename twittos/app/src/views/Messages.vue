@@ -1,6 +1,37 @@
 <script setup>
 import FriendMessageComponent from '../components/FriendMessageComponent.vue'
 import ChatBoxComponent from '../components/ChatBoxComponent.vue'
+import { ref, VueElement, computed } from 'vue'
+import axios from 'axios'
+import { userAuth } from '../stores/AuthStore'
+const authStore = userAuth();
+
+const Friendsmessages = ref([])
+const chats = ref([])
+
+setInterval(() => {
+  axios.get('http://localhost:3000/mp')
+    .then(response => {
+      Friendsmessages.value = response.data;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, 1000);
+setInterval(() => {
+  axios.get('http://localhost:3000/mps',)
+    .then(response => {
+      chats.value = response.data;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, 1000);
+
+function sendIdChatBox(ref) {
+  console.log(ref)
+}
+
 </script>
 
 <template>
@@ -28,19 +59,21 @@ import ChatBoxComponent from '../components/ChatBoxComponent.vue'
         </div>
       </div>
       <div id="blocDivMsg">
-        <FriendMessageComponent />
+        <FriendMessageComponent @click="sendIdChatBox(msg.idSender, msg.idRecever)" v-for="msg in Friendsmessages"
+          :key="msg.idMp" :id-mp="msg.idMp" :id-sender="msg.idSender" :id-recever="msg.idRecever" :msg="msg.msg"
+          :obj="msg.obj" :a-envoye="msg.aEnvoye" :date-mp="msg.dateMp" :fullname="msg.fullname"
+          :username="msg.username" />
       </div>
     </div>
     <div>
       <ChatBoxComponent/>
-
     </div>
   </div>
 </template>
 
 
 <style>
-#containerMsg{
+#containerMsg {
   display: flex;
   width: fit-content;
 }
