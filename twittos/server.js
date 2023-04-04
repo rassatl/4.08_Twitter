@@ -66,8 +66,9 @@ app.post('/login', async (req, res) => {
 
 app.get('/mps', async (req, res) => {
   try {
+    const data = req.query;
     const connection = await pool.getConnection();
-    const [rows, fields] = await connection.execute('SELECT * FROM mp m join profil p on m.idRecever = p.idProfil order by m.dateMp DESC');
+    const [rows, fields] = await connection.execute('SELECT * FROM mp m join profil p on m.idRecever = p.idProfil where m.idSender = ? and m.idRecever = ? or m.idSender = ? and m.idRecever = ? order by m.dateMp ASC', [data.idCompte1, data.idCompte2, data.idCompte2, data.idCompte1]);
     connection.release();
     res.json(rows);
   } catch (error) {

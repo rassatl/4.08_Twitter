@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import FriendMessageComponent from '../components/FriendMessageComponent.vue'
-
+import axios from 'axios'
 import { ref } from 'vue'
 function OpenMessageBox() {
     var msgBox = document.getElementById("boiteMessage");
@@ -14,6 +14,19 @@ function CloseMessageBox() {
     boolBoxMessage.value = false;
 }
 const boolBoxMessage = ref(false);
+
+const Friendsmessages = ref([])
+
+setInterval(() => {
+  axios.get('http://localhost:3000/mp')
+    .then(response => {
+      Friendsmessages.value = response.data;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, 1000);
+
 </script>
 
 <template>
@@ -50,7 +63,10 @@ const boolBoxMessage = ref(false);
                 </div>
             </div>
         </div>
-        <FriendMessageComponent />
+        <FriendMessageComponent @click="sendIdChatBox(msg)" v-for="msg in Friendsmessages"
+          :key="msg.idMp" :id-mp="msg.idMp" :id-sender="msg.idSender" :id-recever="msg.idRecever" :msg="msg.msg"
+          :obj="msg.obj" :a-envoye="msg.aEnvoye" :date-mp="msg.dateMp" :fullname="msg.fullname"
+          :username="msg.username" />
     </div>
 </template>
 

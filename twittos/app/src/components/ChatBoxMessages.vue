@@ -1,114 +1,81 @@
 <script setup>
-import ItemChatBox from './ChatBoxItem.vue'
-import { ref } from 'vue'
-import axios from 'axios'
-
+import { defineProps } from 'vue'
 import { userAuth } from '../stores/AuthStore'
-const authStore = userAuth();
+
+const authStore = userAuth()
 
 const props = defineProps({
     idMp: {
         type: String,
-        default: ""
+        default: '',
     },
     idSender: {
         type: String,
-        default: ""
+        default: '',
     },
     fullname: {
         type: String,
-        default: ""
+        default: '',
     },
     username: {
         type: String,
-        default: ""
+        default: '',
     },
     idRecever: {
         type: String,
-        default: ""
+        default: '',
     },
     msg: {
         type: String,
-        default: ""
+        default: '',
     },
     obj: {
         type: String,
-        default: ""
+        default: '',
     },
     aEnvoye: {
         type: String,
-        default: ""
+        default: '',
     },
     dateMp: {
         type: String,
-        default: ""
-    }
+        default: '',
+    },
 })
 </script>
 
 <template>
-    <div v-if="idSender">
-        <!-- <div v-if="idSender == authStore.user.idProfil ? 'droite' : 'gauche'">
-                                <div class="bgli">
-                                    <p v-if="idSender == authStore.user.idProfil ? 'me' : 'friend'">{{ msg }}</p>
-                                </div>
-                            </div> -->
-        <div v-if="idSender == authStore.user.idProfil ? 'gauche' : 'droite'">
-            <div class="bgli">
-                <div v-if="idSender == authStore.user.idProfil" id="me">
-                    {{msg}}
-                </div>
-                <div v-else id="friend">
-                    {{msg}}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div v-else>
-        <p>Object not received!</p>
+    <div :class="[idSender === authStore.user.idProfil ? 'me' : 'friend']">
+        {{ msg }}
     </div>
 </template>
-
-
+  
 <style scoped>
-#me {
-    background-color: rgb(29, 155, 240);
+.me {
+    background-color: rgba(29, 156, 240, 0.836);
     padding: 1rem;
     border-radius: 30px;
     border-bottom-right-radius: 4px;
+    width: fit-content;
     color: white;
+    max-width: 20rem;
     font-family: arial;
+    margin-left: auto;
+    margin-top: 5px;
 }
 
-#friend {
-    background-color: rgb(29, 155, 240);
+.friend {
+    background-color: rgb(245, 245, 245);
     padding: 1rem;
     border-radius: 30px;
     border-bottom-left-radius: 4px;
+    width: fit-content;
+    max-width: 20rem;
     color: black;
     font-family: arial;
-}
+    margin-right: auto;
+    margin-top: 5px;
 
-#droite {
-    color: black;
-    float: right;
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    background-color: red;
-}
-
-#gauche {
-    color: black;
-    float: left;
-    display: flex;
-    width: 100%;
-    margin-left: -40px;
-    background-color: blue;
-}
-
-.bgli {
-    padding: 10px 20px;
-    border-radius: 10px;
 }
 </style>
+  

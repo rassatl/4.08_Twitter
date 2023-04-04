@@ -7,7 +7,6 @@ import { userAuth } from '../stores/AuthStore'
 const authStore = userAuth();
 
 const Friendsmessages = ref([])
-const chats = ref([])
 
 setInterval(() => {
   axios.get('http://localhost:3000/mp')
@@ -18,18 +17,21 @@ setInterval(() => {
       console.error(error);
     });
 }, 1000);
-setInterval(() => {
-  axios.get('http://localhost:3000/mps',)
-    .then(response => {
-      chats.value = response.data;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}, 1000);
 
+
+const emit = defineEmits(['valueIdChatBox'])
+var idRecever = ''
+var fullname = ''
+var username = ''
+var dateCreation = ''
+const affichage = ref(false);
 function sendIdChatBox(ref) {
+  emit('valueIdChatBox', ref)
   console.log(ref)
+  idRecever = ref.idRecever
+  fullname = ref.fullname
+  username = ref.username
+  affichage.value = true;
 }
 
 </script>
@@ -59,14 +61,14 @@ function sendIdChatBox(ref) {
         </div>
       </div>
       <div id="blocDivMsg">
-        <FriendMessageComponent @click="sendIdChatBox(msg.idSender, msg.idRecever)" v-for="msg in Friendsmessages"
+        <FriendMessageComponent @click="sendIdChatBox(msg)" v-for="msg in Friendsmessages"
           :key="msg.idMp" :id-mp="msg.idMp" :id-sender="msg.idSender" :id-recever="msg.idRecever" :msg="msg.msg"
           :obj="msg.obj" :a-envoye="msg.aEnvoye" :date-mp="msg.dateMp" :fullname="msg.fullname"
           :username="msg.username" />
       </div>
     </div>
     <div>
-      <ChatBoxComponent/>
+      <ChatBoxComponent v-if="affichage" :id-recever="idRecever" :fullname="fullname" :username="username"/>
     </div>
   </div>
 </template>
@@ -76,6 +78,7 @@ function sendIdChatBox(ref) {
 #containerMsg {
   display: flex;
   width: fit-content;
+  top:0px;
 }
 
 

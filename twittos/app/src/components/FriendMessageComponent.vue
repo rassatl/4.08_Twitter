@@ -45,30 +45,33 @@ const props = defineProps({
 
 
 <template>
-    <ItemFriendMessage v-if="idSender == authStore.user.idProfil">
-        <template #avatar>
-            <img src="../assets/avatar4.jpg" alt="avatar4" class="imgAvatar" >
-        </template>
-        <template #name>
-            {{ fullname }}
-            <p>Receiver : {{ idRecever }}</p>
-        </template>
-        <template #msgUserArobase>
-            @{{ username }}
-        </template>
-    </ItemFriendMessage>
+    <div v-if="authStore.user">
+        <ItemFriendMessage v-if="idSender == authStore.user.idProfil">
+            <template #avatar>
+                <img src="../assets/avatar4.jpg" alt="avatar4" class="imgAvatar">
+            </template>
+            <template #name>
+                {{ fullname }}
+                <p>Receiver : {{ idRecever }}</p>
+            </template>
+            <template #msgUserArobase>
+                @{{ username }}
+            </template>
+        </ItemFriendMessage>
+    </div>
+
     <!-- <ItemFriendMessage>
-        <template #avatar>
-            <img src="../assets/avatar2.jpg" alt="avatar2" class="imgAvatar" >
-        </template>
-        <template #name>
-            Billy
-        </template>
-        <template #msgUserArobase>
-            @BillyBoy · Mer 25
-        </template>
-        <template #lastMessage>
-            Quoicoubeh
-        </template>
-    </ItemFriendMessage> -->
+            <template #avatar>
+                <img src="../assets/avatar2.jpg" alt="avatar2" class="imgAvatar" >
+            </template>
+            <template #name>
+                Billy
+            </template>
+            <template #msgUserArobase>
+                @BillyBoy · Mer 25
+            </template>
+            <template #lastMessage>
+                Quoicoubeh
+            </template>
+        </ItemFriendMessage> -->
 </template>

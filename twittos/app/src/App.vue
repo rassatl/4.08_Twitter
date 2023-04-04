@@ -108,7 +108,7 @@ userAuth();
   border-radius: 13px;
   position: fixed;
   right: 13rem;
-  top: 42rem;
+  top: 45rem;
   z-index: 600;
 }
 
@@ -120,7 +120,7 @@ userAuth();
   border-radius: 13px;
   position: fixed;
   right: 13rem;
-  top: 22rem;
+  top: 23.5rem;
   z-index: 600;
 }
 
@@ -158,7 +158,7 @@ userAuth();
   padding: 10px;
   border-radius: 13px;
   position: fixed;
-  top: 3rem;
+  top: 3.5rem;
   right: 13rem;
   z-index: 600;
 }

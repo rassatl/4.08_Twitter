@@ -181,10 +181,10 @@ async function disconnectButton() {
     background-color: white;
     color: black;
     border: 2px solid black;
-    padding: 5px;
+    padding: 10px;
     border-radius: 50px;
     font-size: 1rem;
-    width: 60%;
+    width: fit-content;
     cursor: pointer;
 }
 #buttonDisconnect:hover {
@@ -236,7 +236,7 @@ nav {
     height: fit-content;
     position: fixed;
     top: 0.5rem;
-    left: 7rem;
+    left: 4rem;
     font-size: 1rem;
     padding: 1rem;
 }

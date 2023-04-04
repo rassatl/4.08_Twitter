@@ -95,7 +95,10 @@ import SearchBar from './SearchBar.vue'
     flex: 1;
     color: black
 }
-
+#containerIconTweetButton {
+  position: fixed;
+  bottom: 0;
+}
 
 #containerData {
     background-color: white;

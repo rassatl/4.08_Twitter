@@ -2,19 +2,31 @@
 import ItemChatBox from './ChatBoxItem.vue'
 import { userAuth } from '../stores/AuthStore'
 import ChatBoxMessages from '../components/ChatBoxMessages.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import axios from 'axios'
 const authStore = userAuth();
 
+const props = defineProps({
+    idRecever: String,
+    fullname: String,
+    username: String,
+    dateCreation: String,
+})
+
+watch(props.idRecever,(value) => {})
+
 const chats = ref([])
 setInterval(() => {
-    axios.get('http://localhost:3000/mps',)
+    if(props.idRecever != undefined)
+    {
+        axios.get('http://localhost:3000/mps?idCompte1='+authStore.user.idProfil+'&idCompte2='+ props.idRecever)
         .then(response => {
             chats.value = response.data;
         })
         .catch(error => {
             console.error(error);
         });
+    }
 }, 1000);
 
 
