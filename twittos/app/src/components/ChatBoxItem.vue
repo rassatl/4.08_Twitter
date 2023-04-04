@@ -1,10 +1,18 @@
 <script setup>
 import SearchBar from './SearchBar.vue'
+
+const emit = defineEmits(['closePageMessages'])
 </script>
 
 <template>
     <div class="chat">
         <div id="containerData">
+            <div id="boutonClose" @click=" emit('closePageMessages', false);">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                        d="M368 368L144 144M368 144L144 368" />
+                </svg>
+            </div>
             <div class="chatUserData">
                 <p>
                     <slot name="avatar"></slot>
@@ -82,10 +90,27 @@ import SearchBar from './SearchBar.vue'
 </template>
 
 <style scoped>
+#boutonClose {
+    position: absolute;
+    top:10px;
+    left: 10px;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-#containerSendButton{
+#boutonClose:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+
+#containerSendButton {
     margin: 0.5rem;
 }
+
 #searchBarContainer {
     width: 100%;
     display: flex;
@@ -95,9 +120,10 @@ import SearchBar from './SearchBar.vue'
     flex: 1;
     color: black
 }
+
 #containerIconTweetButton {
-  position: fixed;
-  bottom: 0;
+    position: fixed;
+    bottom: 0;
 }
 
 #containerData {

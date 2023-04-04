@@ -13,21 +13,20 @@ const props = defineProps({
     dateCreation: String,
 })
 
-watch(props.idRecever,(value) => {})
+watch(props.idRecever, (value) => { })
 
 const chats = ref([])
 setInterval(() => {
-    if(props.idRecever != undefined)
-    {
-        axios.get('http://localhost:3000/mps?idCompte1='+authStore.user.idProfil+'&idCompte2='+ props.idRecever)
-        .then(response => {
-            chats.value = response.data;
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    if (props.idRecever != undefined) {
+        axios.get('http://localhost:3000/mps?idCompte1=' + authStore.user.idProfil + '&idCompte2=' + props.idRecever)
+            .then(response => {
+                chats.value = response.data;
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
-}, 1000);
+}, 200);
 
 
 </script>
@@ -60,5 +59,4 @@ setInterval(() => {
 </template>
 
 
-<style scoped>
-</style>
+<style scoped></style>

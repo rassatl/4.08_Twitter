@@ -16,7 +16,7 @@ setInterval(() => {
     .catch(error => {
       console.error(error);
     });
-}, 1000);
+}, 200);
 
 
 const emit = defineEmits(['valueIdChatBox'])

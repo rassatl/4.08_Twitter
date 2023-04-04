@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import FriendMessageComponent from '../components/FriendMessageComponent.vue'
+import ChatBoxComponent from '../components/ChatBoxComponent.vue'
 import axios from 'axios'
 import { ref } from 'vue'
 function OpenMessageBox() {
@@ -25,7 +26,22 @@ setInterval(() => {
     .catch(error => {
       console.error(error);
     });
-}, 1000);
+}, 200);
+
+const emit = defineEmits(['valueIdChatBox'])
+var idRecever = ''
+var fullname = ''
+var username = ''
+var dateCreation = ''
+const affichage = ref(false);
+function sendIdChatBox(ref) {
+  emit('valueIdChatBox', ref)
+  console.log(ref)
+  idRecever = ref.idRecever
+  fullname = ref.fullname
+  username = ref.username
+  affichage.value = true;
+}
 
 </script>
 
@@ -63,10 +79,13 @@ setInterval(() => {
                 </div>
             </div>
         </div>
-        <FriendMessageComponent @click="sendIdChatBox(msg)" v-for="msg in Friendsmessages"
+        <FriendMessageComponent v-if="!affichage" @click="sendIdChatBox(msg)" v-for="msg in Friendsmessages"
           :key="msg.idMp" :id-mp="msg.idMp" :id-sender="msg.idSender" :id-recever="msg.idRecever" :msg="msg.msg"
           :obj="msg.obj" :a-envoye="msg.aEnvoye" :date-mp="msg.dateMp" :fullname="msg.fullname"
           :username="msg.username" />
+          <div>
+            <ChatBoxComponent v-if="affichage" @closePageMessages="(i) => affichage = i" :id-recever="idRecever" :fullname="fullname" :username="username"/>
+          </div>
     </div>
 </template>
 
