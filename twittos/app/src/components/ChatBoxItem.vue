@@ -1,13 +1,38 @@
 <script setup>
 import SearchBar from './SearchBar.vue'
+import axios from 'axios'
+import { userAuth } from '../stores/AuthStore'
+import { ref } from 'vue'
 
 const emit = defineEmits(['closePageMessages'])
+
+const authStore = userAuth();
+
+//idSender,idRecever,msg, obj,aEnvoye, dateMp
+const message = ref({
+    idSender: 0,
+    idRecever: 2,
+    msg: '',
+    obj: '',
+    aEnvoye: 1
+})
+function callFunctionInsertMessage() {
+    message.value.idSender = authStore.user.idProfil;
+    axios.post('http://localhost:3000/mpspv', message.value)
+        .then(response => {
+            console.log(response);
+            message.value.msg = '';
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
 </script>
 
 <template>
     <div class="chat">
         <div id="containerData">
-            <div id="boutonClose" @click=" emit('closePageMessages', false);">
+            <div id="boutonClose" @click="emit('closePageMessages', false);">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
                         d="M368 368L144 144M368 144L144 368" />
@@ -71,9 +96,14 @@ const emit = defineEmits(['closePageMessages'])
                 </div>
             </div>
             <div id="searchBarContainer">
-                <SearchBar class="search" placeholder="Start a new message" />
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="Start a new message" v-model="message.msg">
+                    </div>
+                </div>
             </div>
-            <div id="containerSendButton">
+            <div id="containerSendButton" @click="callFunctionInsertMessage()">
                 <div id="bgIcons">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                         <g>
@@ -90,9 +120,47 @@ const emit = defineEmits(['closePageMessages'])
 </template>
 
 <style scoped>
+.search-container {
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    width: 100%;
+    flex: 1;
+}
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f5f8fa;
+    border-radius: 30px;
+    padding: 5px 1px;
+    flex: 1;
+}
+
+.fa-search {
+    font-size: 20px;
+    margin-right: 5px;
+    color: #aab8c2
+}
+
+input[type="text"] {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: Black;
+    width: 100%;
+    padding: 0 10px;
+}
+
+#containerIcons {
+    margin-left: 0px;
+}
+
 #boutonClose {
     position: absolute;
-    top:10px;
+    top: 10px;
     left: 10px;
     border-radius: 50%;
     width: 2rem;
@@ -104,11 +172,6 @@ const emit = defineEmits(['closePageMessages'])
 
 #boutonClose:hover {
     background-color: rgb(221, 221, 221);
-}
-
-
-#containerSendButton {
-    margin: 0.5rem;
 }
 
 #searchBarContainer {
@@ -133,10 +196,9 @@ const emit = defineEmits(['closePageMessages'])
     text-align: center;
     align-items: center;
     justify-content: center;
-    width: 35vw;
+    width: 100%;
     padding: 2rem;
     padding-bottom: 1rem;
-
 }
 
 #chatBox {

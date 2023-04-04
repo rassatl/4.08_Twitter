@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     z-index: 999;
-    width: 20vw;
+    width: 100%;
     flex: 1;
 }
 

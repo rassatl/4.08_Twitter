@@ -59,19 +59,4 @@ const props = defineProps({
             </template>
         </ItemFriendMessage>
     </div>
-
-    <!-- <ItemFriendMessage>
-            <template #avatar>
-                <img src="../assets/avatar2.jpg" alt="avatar2" class="imgAvatar" >
-            </template>
-            <template #name>
-                Billy
-            </template>
-            <template #msgUserArobase>
-                @BillyBoy · Mer 25
-            </template>
-            <template #lastMessage>
-                Quoicoubeh
-            </template>
-        </ItemFriendMessage> -->
 </template>

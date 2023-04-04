@@ -6,7 +6,7 @@ import axios from 'axios'
 import { ref } from 'vue'
 function OpenMessageBox() {
     var msgBox = document.getElementById("boiteMessage");
-    msgBox.style.height = "50rem";
+    msgBox.style.height = "70rem";
     boolBoxMessage.value = true;
 }
 function CloseMessageBox() {

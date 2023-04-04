@@ -76,6 +76,19 @@ app.get('/mps', async (req, res) => {
     res.status(500).send('Error retrieving data from database');
   }
 });
+app.post('/mpspv', async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(data);
+    const connection = await pool.getConnection();
+    const [result, fields] = await connection.execute('INSERT INTO mp (idSender,idRecever,msg, obj,aEnvoye) VALUES (?,?,?,?,?)', [data.idSender, data.idRecever, data.msg, data.obj, data.aEnvoye]);
+    connection.release();
+    res.json({ res: result });
+    console.log('insert msg good');
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 app.get('/mp', async (req, res) => {
   try {

@@ -1,6 +1,7 @@
 <script setup>
 import ItemTweet from './TweetItem.vue'
 import axios from 'axios'
+import { userAuth } from '../stores/AuthStore'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
@@ -127,8 +128,8 @@ const props = defineProps({
                 </div>
                 <div class="nbParOptionBasic">
                     <p>{{ view }}</p>
+                </div>
             </div>
-        </div>
 
             <div class="tweetOptions">
                 <div class="optionsIconsBasic">

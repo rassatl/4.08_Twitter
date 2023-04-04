@@ -16,7 +16,7 @@ setInterval(() => {
         .catch(error => {
             console.error(error);
         });
-}, 1000);
+}, 200);
 
 //idProfil,msg, obj, reply, retweet, lik, view 
 const tweet = ref({
