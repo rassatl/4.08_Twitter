@@ -7,11 +7,10 @@ import { ref } from 'vue'
 const emit = defineEmits(['closePageMessages'])
 
 const authStore = userAuth();
-
 //idSender,idRecever,msg, obj,aEnvoye, dateMp
 const message = ref({
     idSender: 0,
-    idRecever: 2,
+    idRecever: 2,// à changer !!!
     msg: '',
     obj: '',
     aEnvoye: 1

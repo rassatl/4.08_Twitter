@@ -1,12 +1,8 @@
-<script>
+<script setup>
 import TrendComponent from '../components/TrendComponent.vue'
-
-export default {
-  mounted() {
-    document.title = 'Profile / Twitter';
-  },
-    components: { TrendComponent }
-};
+import { userAuth } from '../stores/AuthStore'
+const authStore = userAuth();
+document.title = 'Profile / Twitter';
 </script>
 
 <template>
@@ -27,14 +23,14 @@ export default {
           </RouterLink>
         </div>
         <div id="headerInfo">
-          <h3>Lou RASSAT</h3>
+          <h3>{{ authStore.user.fullname }}</h3>
           <p>0 Tweets</p>
         </div>
       </div>
     </header>
     <main>
       <div id="bgHeader">
-        <div id="iconHeader">L</div>
+        <img src="../assets/avatar1.jpg" alt="Avatar" id="imgPro"/>
       </div>
       <div id="blocButtonEditProfil">
         <div id="buttonEditProfil">
@@ -42,8 +38,8 @@ export default {
         </div>
       </div>
       <div id="infoProfile">
-        <div id="nom">Lou RASSAT</div>
-        <p>@Louuleloup</p>
+        <div id="nom">{{ authStore.user.fullname }}</div>
+        <p>@{{ authStore.user.username }}</p>
         <div id="containerJoinDate">
           <div class="iconsProfile">
             <svg>
@@ -191,20 +187,13 @@ export default {
   height: 15rem;
   background-color: rgba(207, 217, 222, 255);
 }
-
-#iconHeader {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 100px;
-  background-color: rgba(69, 90, 100, 255);
-  color: white;
-  font-size: 70px;
-  display: flex;
-  justify-content: center;
-  padding-top: 0.5rem;
-  border: 5px white solid;
-  top: 10rem;
-  left: 1.5rem;
+#imgPro {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    top:150px;
+    left: 30px;
+    border: 5px white solid;
 }
 
 #imgComponent {
@@ -217,7 +206,7 @@ export default {
 #componentHeader {
   position: fixed;
   top: 0px;
-  width: 42%;
+  width: 40%;
   z-index: 999;
   height: 50px;
   min-width: 500px;

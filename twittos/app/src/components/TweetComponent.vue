@@ -50,8 +50,11 @@ const props = defineProps({
         default: ""
     }
 })
-
-// pour le timestamp de chaque tweet sur google : timesince js 
+function addLike() {
+    console.log(props.idTweet);
+    console.log(props.lik)
+}
+// pour le timestamp de chaque tweet sur google : timesince js
 </script>
 
 
@@ -103,7 +106,7 @@ const props = defineProps({
                 </div>
             </div>
 
-            <div class="tweetOptions">
+            <div class="tweetOptions" @click="addLike()">
                 <div class="optionsIconsLike">
                     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
                         <g>
